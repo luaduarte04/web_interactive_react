@@ -46,6 +46,12 @@ const linkStyle = {
 export default function Register() {
   const classes = useStyles();
 
+  const handleRegistration = (event) => {
+    event.preventDefault();
+    console.log("event", event.target.firstName.value)
+    //props.setUser(event.target.firstName.value)
+  }
+
   return (
       <Container component="main" maxWidth="xs">
         <CssBaseline />
@@ -56,7 +62,7 @@ export default function Register() {
           <Typography component="h1" variant="h5">
             Register
           </Typography>
-          <form className={classes.form} noValidate>
+          <form className={classes.form} noValidate onSubmit={ handleRegistration }>
             <Grid container spacing={2}>
               <Grid item xs={12} sm={6}>
                 <TextField

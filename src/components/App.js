@@ -20,33 +20,39 @@ import {
 export default function App() {
   const [ user, setUser ] = useState("");
 
-    return (
-      <Router>
-        <Navbar user={ user } />
+  // function to retrieve first name from database
+  // useEffect(() => {
+  //   effect
+  //   return () => {
+  //     cleanup
+  //   }
+  // }, [user])
 
-      
-        <Switch>
-        <Route path="/home">
-            <Register />
-          </Route>
-          <Route path="/Register">
-            <Register />
-          </Route>
-          <Route path="/Login">
-            <Login setUser={ setUser } />
-          </Route>
-          <Route path="/ResetPassword">
-            <ResetPassword />
-          </Route>
-        </Switch>
-      </Router>
-    );
+  return (
+    <Router>
+      <Navbar user={ user } setUser={ setUser } />
+
+      <Switch>
+      <Route path="/home">
+          <Register />
+        </Route>
+        <Route path="/Register">
+          <Register />
+        </Route>
+        <Route path="/Login">
+          <Login setUser={ setUser } />
+        </Route>
+        <Route path="/ResetPassword">
+          <ResetPassword />
+        </Route>
+      </Switch>
+    </Router>
+  );
 }
 
-// structure:
-// a navbar component that takes two items:
-  // logo - link to home
-  // login:
-    // if logout shows login or register
-    // if login shows user name "Hi, Clara" which is a dropdown
-      // dropdown shows link to games page and user name
+// STUFF THAT I NEED TO DO:
+  // 1 - when logged in show users first name
+  // 2 - when logged in go to my games page
+  // 3 - add setup game to dropdown
+  // 4 - prevent dropdown to pop when logged in for first time
+  // 5 - use first name for dropdown

@@ -11,7 +11,8 @@ import {
 } from '@material-ui/core';
 
 import {
-  Link
+  Link,
+  withRouter
 } from "react-router-dom";
 
 // import Authentication from "./Authentication/Authentication";
@@ -35,7 +36,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Navbar(props) {
+function Navbar(props) {
   const classes = useStyles();
   // const [auth, setAuth] = React.useState(false);
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -52,6 +53,12 @@ export default function Navbar(props) {
   const handleClose = () => {
     setAnchorEl(null);
   };
+
+  const handleLogout = (event) => {
+    event.preventDefault();
+    props.setUser(false);
+    props.history.push("/home");
+  }
 
   const linkStyle = {
     color: "white",
@@ -105,9 +112,16 @@ export default function Navbar(props) {
                   open={open}
                   onClose={handleClose}
                 >
-                  <Typography align="center">Name</Typography>
-                  <MenuItem onClick={handleClose}>My Games</MenuItem>
-                  <MenuItem onClick={handleClose}>Logout</MenuItem>
+                  <MenuItem onClick={handleClose}>Name</MenuItem>
+                  <MenuItem>
+                    <Link
+                      to="/MyGames"
+                      style={{textDecoration: "none", color: "rgba(0, 0, 0, 0.87)"}}
+                    >
+                      My Games
+                    </Link>
+                  </MenuItem>
+                  <MenuItem onClick={handleLogout}>Logout</MenuItem>
                 </Menu>
               </div>
             )}
@@ -116,3 +130,5 @@ export default function Navbar(props) {
       </div>
   );
 }
+
+export default withRouter(Navbar);
