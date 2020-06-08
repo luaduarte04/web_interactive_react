@@ -4,8 +4,6 @@ import {
   Button,
   CssBaseline,
   TextField,
-  FormControlLabel,
-  Link,
   Grid,
   Box,
   Typography,
@@ -14,11 +12,11 @@ import {
 }from '@material-ui/core';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 
-import Copyright from "./Copyright";
-
 import {
-  BrowserRouter as Router
+  Link
 } from "react-router-dom";
+
+import Copyright from "./Copyright";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -41,11 +39,15 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+const linkStyle = {
+  color: "grey",
+  textDecoration: "none"
+}
+
 export default function Login() {
   const classes = useStyles();
 
   return (
-    <Router>
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         <div className={classes.paper}>
@@ -93,12 +95,12 @@ export default function Login() {
             </Button>
             <Grid container justify="center">
               <Grid item>
-                <Link href="/Login" variant="body2">
+                <Link to="/Login" style={linkStyle} variant="body2">
                   Already have an account? Login
                 </Link>
               </Grid>
               <Grid item>
-                <Link href="/Register" variant="body2">
+                <Link to="/Register" style={linkStyle} variant="body2">
                   Don't have an account? Register
                 </Link>
               </Grid>
@@ -109,6 +111,5 @@ export default function Login() {
           <Copyright />
         </Box>
       </Container>
-    </Router>
   );
 }

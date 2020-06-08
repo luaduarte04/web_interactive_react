@@ -5,7 +5,6 @@ import {
   CssBaseline,
   TextField,
   FormControlLabel,
-  Link,
   Grid,
   Box,
   Typography,
@@ -13,12 +12,11 @@ import {
   Container }from '@material-ui/core';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 
-import Copyright from "./Copyright";
-import Register from "./Register";
-
 import {
-  BrowserRouter as Router
+  Link
 } from "react-router-dom";
+
+import Copyright from "./Copyright";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -41,11 +39,22 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Login() {
+export default function Login(props) {
   const classes = useStyles();
 
+  const handleLogging = (event) => {
+    event.preventDefault();
+    console.log("event", event.target.email.value)
+    console.log("event2", event.target.password.value)
+    props.setUser(event.target.email.value)
+  }
+  
+  const linkStyle = {
+    color: "grey",
+    textDecoration: "none"
+  }
+
   return (
-    <Router>
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         <div className={classes.paper}>
@@ -55,7 +64,7 @@ export default function Login() {
           <Typography component="h1" variant="h5">
             Login
           </Typography>
-          <form className={classes.form} noValidate>
+          <form className={classes.form} noValidate onSubmit={ handleLogging }>
             <Grid container spacing={2}>
               <Grid item xs={12}>
                 <TextField
@@ -88,16 +97,16 @@ export default function Login() {
               color="primary"
               className={classes.submit}
             >
-              Sign In
+              Log In
             </Button>
             <Grid container justify="space-between">
               <Grid item>
-                <Link href="/ResetPassword" variant="body2">
+                <Link to="/ResetPassword" style={linkStyle} variant="body2">
                   Forgot Password?
                 </Link>
               </Grid>
               <Grid item>
-                <Link href="/Register" variant="body2">
+                <Link to="/Register" style={linkStyle} variant="body2">
                   Don't have an account? Register
                 </Link>
               </Grid>
@@ -108,6 +117,5 @@ export default function Login() {
           <Copyright />
         </Box>
       </Container>
-    </Router>
   );
 }
