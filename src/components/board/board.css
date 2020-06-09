@@ -1,0 +1,46 @@
+.board__box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  width: calc(250px / 3);
+  height: calc(250px / 3);
+  font-size: 32px;
+  color: #111;
+  background-color: #fff;
+  border: 1px solid #aaa;
+}
+
+.board-wrapper {
+  display: flex;
+  flex-flow: row wrap;
+}
+
+.board {
+  width: 500px;
+}
+
+.board-row {
+  display: flex;
+  flex-flow: row wrap;
+}
+
+.board-heading {
+  margin-top: 0;
+  margin-bottom: 8px;
+  font: 700 18px / 1.618 sans-serif;
+  list-style-type: none;
+}
+
+.board-history {
+  margin-left: 18px;
+}
+
+.board-history-list {
+  padding: 0;
+  list-style-type: none;
+}
+
+.board-footer {
+  width: 100%;
+}
