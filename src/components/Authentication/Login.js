@@ -51,13 +51,14 @@ export default function Login(props) {
     method: 'post',
     body: {
       email, password
-    }
+    }, 
+    onSuccess: () => history.push("/")
   })
 
   const handleLogging = async (event) => {
     event.preventDefault();
     await doRequest();
-    history.push("/");
+    
     
     // props.setUser(event.target.first_name.value)
   }
