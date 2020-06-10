@@ -43,7 +43,7 @@ const linkStyle = {
   textDecoration: "none"
 }
 
-export default function Register() {
+export default function Register(props) {
   const classes = useStyles();
 
   const handleRegistration = (event) => {
@@ -129,9 +129,6 @@ export default function Register() {
             </Grid>
           </form>
         </div>
-        <Box mt={5}>
-          <Copyright />
-        </Box>
       </Container>
   );
 }

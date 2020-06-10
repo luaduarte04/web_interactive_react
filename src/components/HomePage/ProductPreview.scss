@@ -1,0 +1,21 @@
+.title {
+  color: #3f51b5;
+}
+
+.divider {
+  height: 5px;
+  width: 100px;
+  background-color: #3f51b5;
+}
+
+.galery {
+  width: 80%;
+  height: auto;
+  display: flex;
+  flex-direction: row;
+  margin-top: 5%;
+}
+
+.img-container {
+  object-fit: contain;
+}
