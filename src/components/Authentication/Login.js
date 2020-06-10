@@ -13,13 +13,12 @@ import {
   makeStyles,
   Container }from '@material-ui/core';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
-
 import {
-  Link
+  Link, 
+  useHistory
 } from "react-router-dom";
 
 import Copyright from "./Copyright";
-// import axios from 'axios';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -46,6 +45,7 @@ export default function Login(props) {
   const classes = useStyles();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  let history = useHistory();
   const { doRequest, errors } = authTeacher({
     url: 'http://localhost:8080/login/',
     method: 'post',
@@ -56,7 +56,8 @@ export default function Login(props) {
 
   const handleLogging = async (event) => {
     event.preventDefault();
-    doRequest();
+    await doRequest();
+    history.push("/");
     
     // props.setUser(event.target.first_name.value)
   }

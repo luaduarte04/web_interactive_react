@@ -16,7 +16,8 @@ export default ({ url, method, body }) => {
           <h4>Ooops...</h4>
             <ul>{err.response.statusText}</ul>
         </div>
-      )
+      );
+    throw (err);
     }
   };
   return { doRequest, errors };
