@@ -1,8 +1,7 @@
 import React from 'react';
 import './TheProduct.scss';
 
-import { Container, Typography, Grid, Icon } from '@material-ui/core';
-import AccessibilityNewIcon from '@material-ui/icons/AccessibilityNew';
+import { Typography, Grid } from '@material-ui/core';
 
 export default function TheProduct(props) {
   return (

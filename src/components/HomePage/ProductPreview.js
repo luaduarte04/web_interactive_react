@@ -1,7 +1,7 @@
 import React from 'react';
 import './ProductPreview.scss';
 
-import { Button, Typography } from '@material-ui/core';
+import { Typography } from '@material-ui/core';
 
 import teacher from "./teacher.jpg"
 import student1 from "./student1.jpg"
@@ -24,16 +24,16 @@ export default function ProductPreview(props) {
       <div className="divider"></div>
       <div className="galery">
         <div className="img-container">
-          <img src={teacher} height="auto" width="100%" />
+          <img src={teacher} height="auto" width="100%" alt="teacher looking at screen" />
         </div>
         <div className="img-container">
-          <img src={student2} height="auto" width="100%" />
+          <img src={student2} height="auto" width="100%" alt="little girl looking at screen" />
         </div>
         <div className="img-container">
-          <img src={student1} height="auto" width="100%" />
+          <img src={student1} height="auto" width="100%" alt="boy playing with tablet" />
         </div>
         <div className="img-container">
-          <img src={student3} height="auto" width="100%" />
+          <img src={student3} height="auto" width="100%" alt="little girl with headphone" />
         </div>
       </div>
     </section>

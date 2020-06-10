@@ -4,16 +4,14 @@ import {
   Button,
   CssBaseline,
   TextField,
-  FormControlLabel,
   Grid,
-  Box,
   Typography,
   makeStyles,
   Container }from '@material-ui/core';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 
 import {
-  Link
+  Link,
 } from "react-router-dom";
 
 
@@ -39,13 +37,6 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Login(props) {
   const classes = useStyles();
-
-  const handleLogging = (event) => {
-    event.preventDefault();
-    console.log("event", event.target.email.value)
-    console.log("event2", event.target.password.value)
-    props.setUser(event.target.email.value)
-  }
   
   const linkStyle = {
     color: "grey",
@@ -62,7 +53,7 @@ export default function Login(props) {
           <Typography component="h1" variant="h5">
             Login
           </Typography>
-          <form className={classes.form} noValidate onSubmit={ handleLogging }>
+          <form className={classes.form} noValidate onSubmit={ props.login }>
             <Grid container spacing={2}>
               <Grid item xs={12}>
                 <TextField
