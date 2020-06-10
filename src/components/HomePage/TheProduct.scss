@@ -1,0 +1,62 @@
+section {
+  width: 100%;
+  height: auto;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.bg {
+  width: 100%;
+  height: auto;
+  background-image: url("./rsz_1theproduct-bg.png");
+  background-repeat: repeat;
+  background-color: #3f51b5;
+  background-blend-mode: multiply;
+}
+
+.product-text {
+  color: white;
+  padding: 10% 0px;
+  background-color: #3f51b5a9;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.text-container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.text-container-title {
+  font-weight: bolder;
+  text-transform: uppercase;
+}
+
+.text-container-p {
+  font-weight: lighter;
+  text-align: center;
+  line-height: 25px;
+}
+
+.icon {
+  width: 60px;
+  height: 60px;
+  background-repeat: no-repeat;
+  background-size: contain;
+  margin-bottom: 5%;
+}
+
+.icon1 {
+  background-image: url("./accessibility_new-white-18dp.svg");
+}
+
+.icon2 {
+  background-image: url("./supervisor_account-white-18dp.svg");
+}
+
+.icon3 {
+  background-image: url("./games-white-18dp.svg");
+}

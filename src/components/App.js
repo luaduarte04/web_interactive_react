@@ -10,6 +10,9 @@ import Register from "./Authentication/Register";
 import Login from "./Authentication/Login";
 import ResetPassword from "./Authentication/ResetPassword";
 
+import HomePage from "./HomePage/HomePage";
+import Copyright from "./Authentication/Copyright";
+
 import {
   BrowserRouter as Router,
   Switch,
@@ -33,8 +36,8 @@ export default function App() {
       <Navbar user={ user } setUser={ setUser } />
 
       <Switch>
-      <Route path="/home">
-          <Register />
+        <Route path="/home">
+         <HomePage />
         </Route>
         <Route path="/Register">
           <Register />
@@ -46,11 +49,13 @@ export default function App() {
           <ResetPassword />
         </Route>
       </Switch>
+
+      <Copyright />
     </Router>
   );
 }
 
-// STUFF THAT I NEED TO DO:
+// AUTHENTICATION AND MENU:
   // 1 - when logged in show users first name
   // 2 - when logged in go to my games page
   // 3 - add setup game to dropdown
