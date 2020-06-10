@@ -6,24 +6,32 @@ import initializeDeck from "../deck"
 export default function useGameData() {
 
   const [state, setState] = useState({
+    game: 0,
+    games:[],
     cards: [],
     flipped: [],
     solved:[],
     disabled:false
   })
   useEffect(() => {
-    // Promise.all([
-      axios.get("/games/3")
-      // axios.get('/api/appointments'),
-      // axios.get('/api/interviewers')
-    // ])
+    axios.get("/games")
     .then(res => {
-      console.log("helllooo",res.data.game)
-      const initCards= initializeDeck(res.data.images)
-      setState(prev => ({ ...prev, cards: initCards}))
+      console.log("hello", res.data[0].id);
+      const cardId = res.data[0].id;
+      setState(prev => ({ ...prev, games: res.data, game: cardId}))
     })
-    .catch(err => {console.log("FAILed"); console.log(err)});
+    .catch(err =>  console.log(err));
   }, []);
+
+  useEffect(() => {
+    axios.get(`/games/${state.game}`)
+    .then(res => {
+      console.log("amrhamada hambuzo")
+      const initCards= initializeDeck(res.data.images)
+      setState(prev => ({ ...prev, flipped:[], solved:[], disabled: false, cards: initCards}))
+    })
+    .catch(err => console.log(err));
+  }, [state.game]);
 
   // useEffect(() => {
   //   setState( prev => ({...prev, cards:(initializeDeck())}))
@@ -75,6 +83,7 @@ export default function useGameData() {
     // setFlipped([])
     // setDisabled(false)
   }
- 
-  return {state, flipCard}
+  const setGame = game => setState({...state, game});
+
+  return {state, setGame, flipCard}
 }

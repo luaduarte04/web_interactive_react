@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import './App.css';
-
 // import Authentication from "./Authentication/Authentication";
 import Navbar from "./Navbar/Navbar";
 import Navitem from "./Navbar/Navitem";
@@ -9,6 +8,7 @@ import DropdownMenu from "./Navbar/DropdownMenu";
 import Register from "./Authentication/Register";
 import Login from "./Authentication/Login";
 import ResetPassword from "./Authentication/ResetPassword";
+import ClassRoom from "./game/ClassRoom"
 
 import {
   BrowserRouter as Router,
@@ -17,8 +17,11 @@ import {
   Link
 } from "react-router-dom";
 
+// const WebSocket = require("ws");
+// const wss = new WebSocket.Server('ws://www.localhost.com/8080');
 export default function App() {
   const [ user, setUser ] = useState("");
+
 
   // function to retrieve first name from database
   // useEffect(() => {
@@ -29,24 +32,29 @@ export default function App() {
   // }, [user])
 
   return (
-    <Router>
-      <Navbar user={ user } setUser={ setUser } />
+    <main>
+      <Router>
+        <Navbar user={ user } setUser={ setUser } />
 
-      <Switch>
-      <Route path="/home">
-          <Register />
-        </Route>
-        <Route path="/Register">
-          <Register />
-        </Route>
-        <Route path="/Login">
-          <Login setUser={ setUser } />
-        </Route>
-        <Route path="/ResetPassword">
-          <ResetPassword />
-        </Route>
-      </Switch>
-    </Router>
+        <Switch>
+        <Route path="/home">
+            <Register />
+          </Route>
+          <Route path="/Register">
+            <Register />
+          </Route>
+          <Route path="/Login">
+            <Login setUser={ setUser } />
+          </Route>
+          <Route path="/ResetPassword">
+            <ResetPassword />
+          </Route>
+          <Route path="/teacher">
+            <ClassRoom />
+          </Route>
+        </Switch>
+      </Router>
+    </main>
   );
 }
 
