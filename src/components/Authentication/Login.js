@@ -18,8 +18,6 @@ import {
   useHistory
 } from "react-router-dom";
 
-import Copyright from "./Copyright";
-
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -132,9 +130,6 @@ export default function Login(props) {
             </Grid>
           </form>
         </div>
-        <Box mt={5}>
-          <Copyright />
-        </Box>
       </Container>
   );
 }
