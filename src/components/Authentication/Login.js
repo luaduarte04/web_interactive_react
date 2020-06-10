@@ -55,10 +55,8 @@ export default function Login(props) {
 
   const handleLogging = async (event) => {
     event.preventDefault();
-    await doRequest();
-    
-    
-    // props.setUser(event.target.first_name.value)
+    const data = await doRequest();
+    props.setUser(data.first_name)
   }
   
   const linkStyle = {
