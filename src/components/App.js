@@ -22,7 +22,7 @@ export default function App() {
 
   return (
     <React.Fragment>
-      <Navbar user={ user } />
+      <Navbar user={user}/>
       <Switch>
         <Route path="/Home">
          <HomePage />
@@ -31,10 +31,10 @@ export default function App() {
          <MyGames />
         </Route>
         <Route path="/Register">
-          <Register />
+          <Register setUser={setUser}/>
         </Route>
         <Route path="/Login">
-          <Login setUser={setUser} />
+          <Login setUser={setUser}/>
         </Route>
         <Route path="/ResetPassword">
           <ResetPassword />
