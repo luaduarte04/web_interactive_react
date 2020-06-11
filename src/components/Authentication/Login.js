@@ -11,12 +11,8 @@ import {
   Container }from '@material-ui/core';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import {
-<<<<<<< HEAD
   Link, 
   useHistory
-=======
-  Link,
->>>>>>> master
 } from "react-router-dom";
 
 
@@ -42,7 +38,6 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Login(props) {
   const classes = useStyles();
-<<<<<<< HEAD
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   let history = useHistory();
@@ -59,8 +54,6 @@ export default function Login(props) {
     event.preventDefault();
     await doRequest();
   }
-=======
->>>>>>> master
   
   const linkStyle = {
     color: "grey",
