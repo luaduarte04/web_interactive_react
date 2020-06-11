@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 // import Authentication from "./Authentication/Authentication";
 import Navbar from "./Navbar/Navbar";
@@ -26,10 +26,11 @@ export default function App() {
   // function to retrieve first name from database
   // useEffect(() => {
   //   effect
+    const wss = new WebSocket('ws://localhost:12345');
   //   return () => {
   //     cleanup
   //   }
-  // }, [user])
+  // })
 
   return (
     <main>
@@ -50,7 +51,7 @@ export default function App() {
             <ResetPassword />
           </Route>
           <Route path="/teacher">
-            <ClassRoom />
+            <ClassRoom wss={wss}/>
           </Route>
         </Switch>
       </Router>
