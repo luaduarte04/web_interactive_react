@@ -60,8 +60,9 @@ export default function Register(props) {
 
   const handleRegistration = async (event) => {
     event.preventDefault();
-    await doRequest();
-    //props.setUser(event.target.firstName.value)
+    const response = await doRequest();
+    console.log(response);
+    props.setUser (response);
   }
 
   return (

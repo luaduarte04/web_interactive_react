@@ -1,21 +1,13 @@
 import React, { useState } from 'react';
-import './App.css';
-
 import Navbar from "./Navbar/Navbar";
-
 import Register from "./Authentication/Register";
 import Login from "./Authentication/Login";
 import ResetPassword from "./Authentication/ResetPassword";
-
 import HomePage from "./HomePage/HomePage";
 import MyGames from "./MyGames/MyGames"
 import Copyright from "./Authentication/Copyright";
-
-import {
-  Switch,
-  Route,
-  useHistory,
-} from "react-router-dom";
+import './App.css';
+import { Switch, Route,useHistory } from "react-router-dom";
 
 export default function App() {
   const [ user, setUser ] = useState("");
@@ -28,40 +20,11 @@ export default function App() {
     history.push("/home");
   }
 
-  async function handleLogging (event) {
-    event.preventDefault();
-    // console.log("event", event.target.email.value)
-    // console.log("event2", event.target.password.value)
-    // if (user) {
-    //   setUser(event.target.email.value)
-    //   history.push("/MyGames");
-    // } else {
-
-    // }
-    try {
-      // await Auth.signIn(user.email, user.password);
-      // userHasAuthenticated(true);
-      setUser(event.target.email.value)
-      history.push("/MyGames");
-    } catch (e) {
-      alert(e.message);
-    }
-  }
-
-  // function to retrieve first name from database
-  // useEffect(() => {
-  //   effect
-  //   return () => {
-  //     cleanup
-  //   }
-  // }, [user])
-
   return (
     <React.Fragment>
-      <Navbar user={ user } logout={ handleLogout } />
-
+      <Navbar user={ user } />
       <Switch>
-        <Route path="/home">
+        <Route path="/Home">
          <HomePage />
         </Route>
         <Route path="/MyGames">
@@ -71,13 +34,13 @@ export default function App() {
           <Register />
         </Route>
         <Route path="/Login">
-          <Login login={ handleLogging } />
+          <Login setUser={setUser} />
         </Route>
         <Route path="/ResetPassword">
           <ResetPassword />
         </Route>
       </Switch>
-
+      
       <Copyright />
     </React.Fragment>
   );

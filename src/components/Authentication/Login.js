@@ -47,12 +47,14 @@ export default function Login(props) {
     body: {
       email, password
     }, 
-    onSuccess: () => history.push("/")
+    onSuccess: () => history.push("/MyGames")
   })
 
   const handleLogging = async (event) => {
     event.preventDefault();
-    await doRequest();
+    const response = await doRequest();
+    props.setUser (response);
+    console.log(response);
   }
   
   const linkStyle = {
@@ -70,7 +72,7 @@ export default function Login(props) {
           <Typography component="h1" variant="h5">
             Login
           </Typography>
-          <form className={classes.form} noValidate onSubmit={ props.login }>
+          <form className={classes.form} noValidate onSubmit={ handleLogging }>
             <Grid container spacing={2}>
               <Grid item xs={12}>
                 <TextField

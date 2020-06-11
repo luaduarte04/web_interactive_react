@@ -88,7 +88,7 @@ function Navbar(props) {
                   color="inherit"
                   style={{cursor: 'pointer'}}
                 >
-                  Hi, { props.user }
+                  Hi, { props.user.first_name }
                 </Typography>
                 <Menu
                   id="menu-appbar"
@@ -105,7 +105,7 @@ function Navbar(props) {
                   open={open}
                   onClose={handleClose}
                 >
-                  <MenuItem onClick={handleClose}>Name</MenuItem>
+                  <MenuItem onClick={handleClose}>{ props.user.first_name }</MenuItem>
                   <MenuItem>
                     <Link
                       to="/MyGames"
