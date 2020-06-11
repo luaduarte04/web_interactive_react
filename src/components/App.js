@@ -8,18 +8,10 @@ import HomePage from "./HomePage/HomePage";
 import MyGames from "./MyGames/MyGames"
 import Copyright from "./Authentication/Copyright";
 import './App.css';
-import { Switch, Route,useHistory } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 
 export default function App() {
   const [ user, setUser ] = useState("");
-  const history = useHistory();
-
-  async function handleLogout (event) {
-    event.preventDefault();
-    // await Auth.signOut();
-    setUser(false);
-    history.push("/home");
-  }
 
   return (
     <React.Fragment>
@@ -44,7 +36,6 @@ export default function App() {
           <Logout setUser={setUser} />
         </Route>
       </Switch>
-      
       <Copyright />
     </React.Fragment>
   );
