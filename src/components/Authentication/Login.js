@@ -1,5 +1,4 @@
-import React from 'react';
-import { useState } from "react"
+import React, {useState } from 'react';
 import authTeacher from "../../hooks/authTeacher";
 import {
   Avatar,
@@ -55,8 +54,7 @@ export default function Login(props) {
 
   const handleLogging = async (event) => {
     event.preventDefault();
-    const data = await doRequest();
-    props.setUser(data.first_name)
+    await doRequest();
   }
   
   const linkStyle = {
