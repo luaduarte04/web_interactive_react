@@ -1,12 +1,10 @@
 import React from 'react';
 import {
   Toolbar,
-  IconButton,
   MenuItem,
   Menu,
   Typography,
   makeStyles,
-  Select,
   AppBar
 } from '@material-ui/core';
 
@@ -54,12 +52,6 @@ function Navbar(props) {
   const handleClose = () => {
     setAnchorEl(null);
   };
-
-  const handleLogout = (event) => {
-    event.preventDefault();
-    props.setUser(false);
-    props.history.push("/home");
-  }
 
   const linkStyle = {
     color: "white",
@@ -118,11 +110,21 @@ function Navbar(props) {
                     <Link
                       to="/MyGames"
                       style={{textDecoration: "none", color: "rgba(0, 0, 0, 0.87)"}}
+                      onClick={handleClose}
                     >
                       My Games
                     </Link>
                   </MenuItem>
-                  <MenuItem onClick={handleLogout}>Logout</MenuItem>
+                  <MenuItem>
+                    <Link
+                      to="/CreateGame"
+                      style={{textDecoration: "none", color: "rgba(0, 0, 0, 0.87)"}}
+                      onClick={handleClose}
+                    >
+                      Create Game
+                    </Link>
+                  </MenuItem>
+                  <MenuItem onClick={props.logout}>Logout</MenuItem>
                 </Menu>
               </div>
             )}

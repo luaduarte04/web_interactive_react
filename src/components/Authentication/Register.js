@@ -5,7 +5,6 @@ import {
   CssBaseline,
   TextField,
   Grid,
-  Box,
   Typography,
   makeStyles,
   Container }from '@material-ui/core';
@@ -14,8 +13,6 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import {
   Link
 } from "react-router-dom";
-
-import Copyright from "./Copyright";
 
 
 const useStyles = makeStyles((theme) => ({
