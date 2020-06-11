@@ -1,4 +1,5 @@
-import React from 'react';
+import React, {useState} from 'react';
+import authTeacher from "../../hooks/authTeacher";
 import {
   Avatar,
   Button,
@@ -9,9 +10,9 @@ import {
   makeStyles,
   Container }from '@material-ui/core';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
-
 import {
-  Link
+  Link, 
+  useHistory
 } from "react-router-dom";
 
 
@@ -42,10 +43,24 @@ const linkStyle = {
 
 export default function Register(props) {
   const classes = useStyles();
+  const [firstName, setFirstName] = useState('');
+  const [lastName, setLastName] = useState('');
+  const [email, setEmail] = useState('');
+  const [avatar, setAvatar] = useState('');
+  const [password, setPassword] = useState('');
+  let history = useHistory();
+  const { doRequest, errors } = authTeacher({
+    url: 'http://localhost:8080/register',
+    method: 'post',
+    body: {
+      firstName, lastName, email, avatar, password
+    }, 
+    onSuccess: () => history.push("/")
+  })
 
-  const handleRegistration = (event) => {
+  const handleRegistration = async (event) => {
     event.preventDefault();
-    console.log("event", event.target.firstName.value)
+    await doRequest();
     //props.setUser(event.target.firstName.value)
   }
 
@@ -71,6 +86,8 @@ export default function Register(props) {
                   id="firstName"
                   label="First Name"
                   autoFocus
+                  value={firstName}
+                  onChange = {event => setFirstName(event.target.value)}
                 />
               </Grid>
               <Grid item xs={12} sm={6}>
@@ -82,6 +99,8 @@ export default function Register(props) {
                   label="Last Name"
                   name="lastName"
                   autoComplete="lname"
+                  value={lastName}
+                  onChange = {event => setLastName(event.target.value)}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -93,6 +112,8 @@ export default function Register(props) {
                   label="Email Address"
                   name="email"
                   autoComplete="email"
+                  value={email}
+                  onChange = {event => setEmail(event.target.value)}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -105,9 +126,12 @@ export default function Register(props) {
                   type="password"
                   id="password"
                   autoComplete="current-password"
+                  value={password}
+                  onChange = {event => setPassword(event.target.value)}
                 />
               </Grid>
             </Grid>
+            {errors}
             <Button
               type="submit"
               fullWidth
