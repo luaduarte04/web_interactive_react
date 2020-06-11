@@ -55,7 +55,7 @@ export default function Register(props) {
     body: {
       first_name, last_name, email, avatar, password
     }, 
-    onSuccess: () => history.push("/")
+    onSuccess: () => history.push("/MyGames")
   })
 
   const handleRegistration = async (event) => {

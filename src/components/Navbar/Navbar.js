@@ -124,7 +124,13 @@ function Navbar(props) {
                       Create Game
                     </Link>
                   </MenuItem>
-                  <MenuItem onClick={props.logout}>Logout</MenuItem>
+                  <MenuItem>
+                    <Link 
+                      to="/Logout" 
+                      style={linkStyle}>
+                      Logout
+                    </Link>
+                  </MenuItem>
                 </Menu>
               </div>
             )}

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import Navbar from "./Navbar/Navbar";
 import Register from "./Authentication/Register";
 import Login from "./Authentication/Login";
+import Logout from "./Authentication/Logout";
 import ResetPassword from "./Authentication/ResetPassword";
 import HomePage from "./HomePage/HomePage";
 import MyGames from "./MyGames/MyGames"
@@ -38,6 +39,9 @@ export default function App() {
         </Route>
         <Route path="/ResetPassword">
           <ResetPassword />
+        </Route>
+        <Route path="/Logout">
+          <Logout setUser={setUser} />
         </Route>
       </Switch>
       
