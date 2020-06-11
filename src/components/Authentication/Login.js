@@ -54,7 +54,6 @@ export default function Login(props) {
     event.preventDefault();
     const response = await doRequest();
     props.setUser (response);
-    console.log(response);
   }
   
   const linkStyle = {

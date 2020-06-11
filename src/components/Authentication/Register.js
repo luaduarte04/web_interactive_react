@@ -43,17 +43,17 @@ const linkStyle = {
 
 export default function Register(props) {
   const classes = useStyles();
-  const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
+  const [first_name, setFirstName] = useState('');
+  const [last_name, setLastName] = useState('');
   const [email, setEmail] = useState('');
-  const [avatar, setAvatar] = useState('');
+  const [avatar, setAvatar] = useState("https://i.imgur.com/LpaY82x.png");
   const [password, setPassword] = useState('');
   let history = useHistory();
   const { doRequest, errors } = authTeacher({
     url: 'http://localhost:8080/register',
     method: 'post',
     body: {
-      firstName, lastName, email, avatar, password
+      first_name, last_name, email, avatar, password
     }, 
     onSuccess: () => history.push("/")
   })
@@ -62,7 +62,6 @@ export default function Register(props) {
     event.preventDefault();
     const response = await doRequest();
     console.log(response);
-    props.setUser (response);
   }
 
   return (
@@ -87,7 +86,7 @@ export default function Register(props) {
                   id="firstName"
                   label="First Name"
                   autoFocus
-                  value={firstName}
+                  value={first_name}
                   onChange = {event => setFirstName(event.target.value)}
                 />
               </Grid>
@@ -100,7 +99,7 @@ export default function Register(props) {
                   label="Last Name"
                   name="lastName"
                   autoComplete="lname"
-                  value={lastName}
+                  value={last_name}
                   onChange = {event => setLastName(event.target.value)}
                 />
               </Grid>
