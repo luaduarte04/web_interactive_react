@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
-
 import Navbar from "./Navbar/Navbar";
 
 import Register from "./Authentication/Register";
 import Login from "./Authentication/Login";
 import ResetPassword from "./Authentication/ResetPassword";
+import ClassRoom from "./game/ClassRoom"
 
 import HomePage from "./HomePage/HomePage";
 import MyGames from "./MyGames/MyGames"
@@ -17,6 +17,8 @@ import {
   useHistory,
 } from "react-router-dom";
 
+// const WebSocket = require("ws");
+// const wss = new WebSocket.Server('ws://www.localhost.com/8080');
 export default function App() {
   const [ user, setUser ] = useState("");
   const history = useHistory();
@@ -48,13 +50,15 @@ export default function App() {
     }
   }
 
+
   // function to retrieve first name from database
   // useEffect(() => {
   //   effect
+    const wss = new WebSocket('ws://localhost:12345');
   //   return () => {
   //     cleanup
   //   }
-  // }, [user])
+  // })
 
   return (
     <React.Fragment>
@@ -76,6 +80,9 @@ export default function App() {
         <Route path="/ResetPassword">
           <ResetPassword />
         </Route>
+        <Route path="/teacher">
+            <ClassRoom wss={wss}/>
+          </Route>
       </Switch>
 
       <Copyright />
