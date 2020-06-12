@@ -17,6 +17,7 @@ import './App.css';
 // const wss = new WebSocket.Server('ws://www.localhost.com/8080');
 export default function App() {
   const [ user, setUser ] = useState("");
+  const wss = new WebSocket('ws://localhost:12345');
 
   return (
     <React.Fragment>
