@@ -11,6 +11,7 @@ export default function useGameData() {
     cards: [],
     flipped: [],
     solved:[],
+    requestGame: false,
     disabled:false
   })
   useEffect(() => {
@@ -18,19 +19,19 @@ export default function useGameData() {
     axios.get("/games")
     .then(res => {
       const cardId = res.data[0].id;
-      console.log("first axios call useeffect")
+      // console.log("first axios call useeffect")
       setState(prev => ({ ...prev, games: res.data, game: cardId}))
-      console.log(`state.game22: ${state.game}`,cardId)
+      // console.log(`state.game22: ${state.game}`,cardId)
     })
     .catch(err =>  console.log(err));
   }, []);
   useEffect(()=>{
-    console.log("---------------------------------------------------------",state.game)
+    // console.log("---------------------------------------------------------",state.game)
   },[state.game])
   // useEffect(() => {
     // console.log("loadGame useeffect")
   function newGame() {
-    console.log(`newGame() state.game: ${state.game}`)
+    // console.log(`newGame() state.game: ${state.game}`)
     return axios.get(`/games/${state.game}`)
     .then(res => {
       // console.log("second axios call useeffect")
@@ -93,6 +94,6 @@ export default function useGameData() {
     // setDisabled(false)
   }
   const setGame = game => setState({...state, game});
-
-  return {state,setRunningGame ,setGame, newGame, flipCard}
+  const setRequestGame = val => setState({...state, requestGame:val});
+  return {state,setRunningGame ,setGame, newGame, setRequestGame, flipCard}
 }
