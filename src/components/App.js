@@ -23,25 +23,25 @@ export default function App() {
     <React.Fragment>
       <Navbar user={user}/>
       <Switch>
-        <Route path="/Home">
+        <Route exact path="/">
          <HomePage />
         </Route>
-        <Route path="/MyGames">
+        <Route exact path="/MyGames">
          <MyGames />
         </Route>
-        <Route path="/Register">
+        <Route exact path="/Register">
           <Register setUser={setUser}/>
         </Route>
-        <Route path="/Login">
+        <Route exact path="/Login">
           <Login setUser={setUser}/>
         </Route>
-        <Route path="/ResetPassword">
+        <Route exact path="/ResetPassword">
           <ResetPassword />
         </Route>
-        <Route path="/Logout">
+        <Route exact path="/Logout">
           <Logout setUser={setUser} />
         </Route>
-        <Route path="/teacher">
+        <Route exact path="/teacher">
             <ClassRoom wss={wss}/>
           </Route>
       </Switch>

@@ -23,3 +23,9 @@
   background-image: url("./edit.svg");
   margin: 0 15%;
 }
+
+.share-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
