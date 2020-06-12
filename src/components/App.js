@@ -5,12 +5,16 @@ import Login from "./Authentication/Login";
 import Logout from "./Authentication/Logout";
 import ResetPassword from "./Authentication/ResetPassword";
 import Copyright from "./Authentication/Copyright";
+import ClassRoom from "./game/ClassRoom"
+
 import HomePage from "./HomePage/HomePage";
 import MyGames from "./MyGames/MyGames"
 import { BrowserRouter as Router, Switch, Route, Link, Redirect } from "react-router-dom";
 import './App.css';
 
 
+// const WebSocket = require("ws");
+// const wss = new WebSocket.Server('ws://www.localhost.com/8080');
 export default function App() {
   const [ user, setUser ] = useState("");
 
@@ -36,6 +40,9 @@ export default function App() {
         <Route path="/Logout">
           <Logout setUser={setUser} />
         </Route>
+        <Route path="/teacher">
+            <ClassRoom wss={wss}/>
+          </Route>
       </Switch>
       <Copyright />
     </React.Fragment>

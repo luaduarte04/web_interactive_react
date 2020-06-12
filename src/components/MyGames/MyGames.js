@@ -1,13 +1,16 @@
-import React from 'react';
+import React, {useState} from 'react';
 import './MyGames.scss';
 
 import { Button, Typography } from '@material-ui/core';
 
 import GameList from './GameList';
 import filter from './filter.svg';
+import Filter from './Filter';
 
 
 export default function MyGames(props) {
+  const [showFilter, setShowFilter] = useState(false);
+
   return (
     <main>
       <div className="header">
@@ -18,18 +21,22 @@ export default function MyGames(props) {
           variant="h2">
           My Games
         </Typography>
-        <Button
-          className="filter"
-          color="primary"
-          component="button"
-          style={{ fontWeight: 'bold'}}>
-            Filter
-          <img
-            className="my-games-icon"
-            style={{marginLeft: "10px"}}
-            src={filter}
-            alt="filter icon" />
-        </Button>
+        <form onSubmit={ e => {e.preventDefault(); setShowFilter(false) }}>
+          <Button
+            className="filter"
+            color="primary"
+            component="button"
+            style={{ fontWeight: 'bold'}}
+            onClick={ e => {e.preventDefault(); setShowFilter(true) }}>
+            { showFilter && <Filter /> }
+              Filter
+            <img
+              className="my-games-icon"
+              style={{marginLeft: "10px"}}
+              src={filter}
+              alt="filter icon" />
+          </Button>
+        </form>
       </div>
       <GameList />
     </main>

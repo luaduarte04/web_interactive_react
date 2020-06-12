@@ -12,7 +12,7 @@ export default function Copyright() {
   }
 
   const divider = {
-    height: "2px",
+    height: "1px",
     width: "100px",
     backgroundColor: "grey",
     marginBottom: "3%",

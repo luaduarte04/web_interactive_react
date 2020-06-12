@@ -6,25 +6,41 @@ import initializeDeck from "../deck"
 export default function useGameData() {
 
   const [state, setState] = useState({
+    game: 0,
+    games:[],
     cards: [],
     flipped: [],
     solved:[],
+    requestGame: false,
     disabled:false
   })
   useEffect(() => {
-    // Promise.all([
-      axios.get("/games/3")
-      // axios.get('/api/appointments'),
-      // axios.get('/api/interviewers')
-    // ])
+    // console.log("usegameData useeffect")
+    axios.get("/games")
     .then(res => {
-      console.log("helllooo",res.data.game)
-      const initCards= initializeDeck(res.data.images)
-      setState(prev => ({ ...prev, cards: initCards}))
+      const cardId = res.data[0].id;
+      // console.log("first axios call useeffect")
+      setState(prev => ({ ...prev, games: res.data, game: cardId}))
+      // console.log(`state.game22: ${state.game}`,cardId)
     })
-    .catch(err => {console.log("FAILed"); console.log(err)});
+    .catch(err =>  console.log(err));
   }, []);
-
+  useEffect(()=>{
+    // console.log("---------------------------------------------------------",state.game)
+  },[state.game])
+  // useEffect(() => {
+    // console.log("loadGame useeffect")
+  function newGame() {
+    // console.log(`newGame() state.game: ${state.game}`)
+    return axios.get(`/games/${state.game}`)
+    .then(res => {
+      // console.log("second axios call useeffect")
+      const initCards= initializeDeck(res.data.images)
+      setState(prev => ({ ...prev, flipped:[], solved:[], disabled: false, cards: initCards}))
+    })
+    .catch(err => console.log(err));
+  // }, [state.game]);
+  }
   // useEffect(() => {
   //   setState( prev => ({...prev, cards:(initializeDeck())}))
   // }, [])
@@ -32,7 +48,9 @@ export default function useGameData() {
   // useEffect(() => {
   //   preloadImages()
   // }, state.cards.join(','))
-
+  function setRunningGame(newState) {
+    setState({...newState})
+  }
   function sameCardClicked(id) {
     return state.flipped.includes(id)
   }
@@ -75,6 +93,7 @@ export default function useGameData() {
     // setFlipped([])
     // setDisabled(false)
   }
- 
-  return {state, flipCard}
+  const setGame = game => setState({...state, game});
+  const setRequestGame = val => setState({...state, requestGame:val});
+  return {state,setRunningGame ,setGame, newGame, setRequestGame, flipCard}
 }
