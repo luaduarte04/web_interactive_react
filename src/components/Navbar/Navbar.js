@@ -88,7 +88,7 @@ function Navbar(props) {
                   color="inherit"
                   style={{cursor: 'pointer'}}
                 >
-                  Hi, { props.user }
+                  Welcome back, { props.user }!
                 </Typography>
                 <Menu
                   id="menu-appbar"
