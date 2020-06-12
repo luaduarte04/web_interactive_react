@@ -1,4 +1,5 @@
-import React from 'react';
+import React, {useState } from 'react';
+import authTeacher from "../../hooks/authTeacher";
 import {
   Avatar,
   Button,
@@ -9,9 +10,9 @@ import {
   makeStyles,
   Container }from '@material-ui/core';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
-
 import {
-  Link,
+  Link, 
+  useHistory
 } from "react-router-dom";
 
 
@@ -37,6 +38,23 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Login(props) {
   const classes = useStyles();
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  let history = useHistory();
+  const { doRequest, errors } = authTeacher({
+    url: 'http://localhost:8080/login/',
+    method: 'post',
+    body: {
+      email, password
+    }, 
+    onSuccess: () => history.push("/MyGames")
+  })
+
+  const handleLogging = async (event) => {
+    event.preventDefault();
+    const response = await doRequest();
+    props.setUser (response);
+  }
   
   const linkStyle = {
     color: "grey",
@@ -53,7 +71,7 @@ export default function Login(props) {
           <Typography component="h1" variant="h5">
             Login
           </Typography>
-          <form className={classes.form} noValidate onSubmit={ props.login }>
+          <form className={classes.form} noValidate onSubmit={ handleLogging }>
             <Grid container spacing={2}>
               <Grid item xs={12}>
                 <TextField
@@ -64,6 +82,8 @@ export default function Login(props) {
                   label="Email Address"
                   name="email"
                   autoComplete="email"
+                  value={email}
+                  onChange = {event => setEmail(event.target.value)}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -76,9 +96,12 @@ export default function Login(props) {
                   type="password"
                   id="password"
                   autoComplete="current-password"
+                  value={password}
+                  onChange = {event => setPassword(event.target.value)}
                 />
               </Grid>
             </Grid>
+            {errors}
             <Button
               type="submit"
               fullWidth

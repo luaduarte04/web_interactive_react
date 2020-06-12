@@ -57,7 +57,6 @@ function Navbar(props) {
     color: "white",
     textDecoration: "none"
   }
-
   return (
       <div className={classes.root}>
         <AppBar position="static">
@@ -88,7 +87,7 @@ function Navbar(props) {
                   color="inherit"
                   style={{cursor: 'pointer'}}
                 >
-                  Welcome back, { props.user }!
+                  Welcome back, { props.user.first_name }!
                 </Typography>
                 <Menu
                   id="menu-appbar"
@@ -105,7 +104,7 @@ function Navbar(props) {
                   open={open}
                   onClose={handleClose}
                 >
-                  <MenuItem onClick={handleClose}>Name</MenuItem>
+                  <MenuItem onClick={handleClose}>{ props.user.first_name }</MenuItem>
                   <MenuItem>
                     <Link
                       to="/MyGames"
@@ -124,7 +123,13 @@ function Navbar(props) {
                       Create Game
                     </Link>
                   </MenuItem>
-                  <MenuItem onClick={props.logout}>Logout</MenuItem>
+                  <MenuItem>
+                    <Link 
+                      to="/Logout" 
+                      style={linkStyle}>
+                      Logout
+                    </Link>
+                  </MenuItem>
                 </Menu>
               </div>
             )}
