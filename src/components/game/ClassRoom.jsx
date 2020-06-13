@@ -6,9 +6,11 @@ import useGameData from "../../hooks/useGameData"
 import GameList from "./GameList"
 import Form from "./Form"
 import StudentList from "./StudentList"
+import socket from "./socket"
 
-export default function ClassRoom({wss}) {
-  const [name, setName] = useState("");
+export default function ClassRoom({isTeacher}) {
+  const [connection, setConnection] = useState();
+  const [name, setName] = useState();
   const [studentNames, setStudentNames] = useState([])
   const {
     state,
@@ -19,46 +21,59 @@ export default function ClassRoom({wss}) {
     setRequestGame
   } = useGameData();
 
-  useEffect(() => {
-    wss.onopen = () => {     
-      console.log("sending initial connection")
-      wss.send(JSON.stringify({subject:"initial"}))
-    }
-    wss.addEventListener("message", event => {
-        const message = JSON.parse(event.data);
-      if (message.subject == "initial" && !state.requestGame ) {
-          setRequestGame( true)
-          console.log("only Client setting request to true")
-      } else if(message.subject == "welcome") {
-        console.log("sending request for on going game")
-        wss.send(JSON.stringify({subject:"receive"}))
-      } else if(message.subject === "state"){
-          console.log("initializing existing game")
-          setRunningGame(message.state);
-      } else if (message.subject === "student_names") {
-        updateStudentNames(message.students)
-      }  
-    })
-  },[name])
+  useEffect(()=> {
+    setConnection(socket());
+    // true);
+  },[])
 
   useEffect(() => {
-    if(wss.readyState === WebSocket.OPEN) {
-        console.log("Sending state once state.cards has changed");
-        wss.send(JSON.stringify({subject:"player_move",state}));
+    if(connection) {
+      connection.onopen = () => {     
+        // console.log("sending initial connection")
+        connection.send(JSON.stringify({subject:"initial"}))
+      }
+      connection.addEventListener("message", event => {
+          const message = JSON.parse(event.data);
+        if (message.subject == "initial" && !state.requestGame ) {
+            setRequestGame( true)
+            // console.log("only Client setting request to true")
+        } else if(message.subject == "welcome") {
+          console.log("sending request for on going game")
+          connection.send(JSON.stringify({subject:"receive"}))
+        } else if(message.subject === "state"){
+            // console.log("initializing existing game")
+            setRunningGame(message.state);
+        } else if (message.subject === "student_names") {
+          updateStudentNames(message.students)
+        }  
+      })
+    }
+  },[connection])
+
+  useEffect(() => {
+
+    if (connection) {  
+      if(connection.readyState === WebSocket.OPEN) {
+          // console.log("Sending state once state.cards has changed");
+          connection.send(JSON.stringify({subject:"player_move",state}));
+      }
     }
   }, [state.cards, state.flipped, state.solved])
 
   useEffect(() => {
-    console.log("BALOOJA")
-    if(wss.readyState === WebSocket.OPEN) {
-      wss.send(JSON.stringify({subject:"setName",name}));
+    if (connection) {   
+      if(connection.readyState === WebSocket.OPEN) {
+        connection.send(JSON.stringify({subject:"setName",name}));
+      }
     }
   },[name])
 
   useEffect(() => {
-    if(state.requestGame){
-        console.log("requesting new game");
-      newGame();
+    if (connection) {  
+      if(state.requestGame && isTeacher){
+          // console.log("requesting new game");
+        newGame();
+      }
     }
   }, [state.game])
 
@@ -76,17 +91,17 @@ export default function ClassRoom({wss}) {
   return (
     
     <section>
-    {!name && ( <Form  onSave={setUserName}/>)}
-     { name && (
+    {(!name && !isTeacher) && ( <Form  onSave={setUserName}/>)}
+     { (name || isTeacher) && (
        <>
         <section className="sidebar">
           <hr className="sidebar__separator sidebar--centered" />
           <div className="sidebar__menu" >
-            <GameList
+            {isTeacher && <GameList
               game={state.game} 
               setGame={setGame}
               games={state.games}
-            />
+            />}
           </div>
           <div>
             <StudentList names={studentNames}/>

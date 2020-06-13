@@ -10,6 +10,9 @@ import ClassRoom from "./game/ClassRoom"
 import HomePage from "./HomePage/HomePage";
 import MyGames from "./MyGames/MyGames"
 import Copyright from "./Authentication/Copyright";
+import CreateRoomButton from "./createRoom/CreateRoomButton"
+import {getURL} from "../helpers/newRoomHelper"
+
 
 import {
   Switch,
@@ -54,12 +57,10 @@ export default function App() {
   // function to retrieve first name from database
   // useEffect(() => {
   //   effect
-    const wss = new WebSocket('ws://localhost:12345');
   //   return () => {
   //     cleanup
   //   }
   // })
-
   return (
     <React.Fragment>
       <Navbar user={ user } logout={ handleLogout } />
@@ -80,15 +81,25 @@ export default function App() {
         <Route path="/ResetPassword">
           <ResetPassword />
         </Route>
-        <Route path="/teacher">
-            <ClassRoom wss={wss}/>
-          </Route>
+        <Route exact path="/teacher/room/:id">
+          {/* <h1>HELLO</h1> */}
+          <ClassRoom  isTeacher={true}/>
+        </Route>
+        <Route exact path="/teacher/:id">
+          <CreateRoomButton getURL={getURL} />
+            {/* <ClassRoom wss={wss}/> */}
+        </Route>
+        <Route exact path="/classroom/:id">.
+          <ClassRoom  isTeacher={false} />
+        </Route>
       </Switch>
 
       <Copyright />
     </React.Fragment>
   );
 }
+// {new WebSocket('ws://localhost:12345')}
+// const wss = new WebSocket('ws://localhost:12345');
 
 // AUTHENTICATION AND MENU:
   // 1 - when logged in show users first name
