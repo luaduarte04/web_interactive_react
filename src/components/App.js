@@ -11,7 +11,7 @@ import HomePage from "./HomePage/HomePage";
 import MyGames from "./MyGames/MyGames"
 import Copyright from "./Authentication/Copyright";
 import CreateRoomButton from "./createRoom/CreateRoomButton"
-import {getURL} from "../helpers/newRoomHelper"
+import {getURL, checkRoomExistance} from "../helpers/newRoomHelper"
 
 
 import {
@@ -83,14 +83,14 @@ export default function App() {
         </Route>
         <Route exact path="/teacher/room/:id">
           {/* <h1>HELLO</h1> */}
-          <ClassRoom  isTeacher={true}/>
+          <ClassRoom  isTeacher={true}  checkRoomExistance={checkRoomExistance} />
         </Route>
         <Route exact path="/teacher/:id">
-          <CreateRoomButton getURL={getURL} />
+          <CreateRoomButton getURL={getURL}/>
             {/* <ClassRoom wss={wss}/> */}
         </Route>
         <Route exact path="/classroom/:id">.
-          <ClassRoom  isTeacher={false} />
+          <ClassRoom  isTeacher={false}  checkRoomExistance={checkRoomExistance} />
         </Route>
       </Switch>
 
