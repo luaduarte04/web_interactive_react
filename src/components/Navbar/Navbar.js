@@ -61,7 +61,7 @@ function Navbar(props) {
       <div className={classes.root}>
         <AppBar position="static">
           <Toolbar>
-            <Link to="/home" style={linkStyle} className={classes.title} color="inherit">
+            <Link to="/" style={linkStyle} className={classes.title} color="inherit">
               <Typography variant="h6" color="inherit" >
                 Interactive Classroom
               </Typography>

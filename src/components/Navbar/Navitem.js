@@ -49,7 +49,7 @@ export default function Navbar(props) {
 
   return (
           <Toolbar>
-            <li><Link href="/home" style={{ textDecoration: 'none' }} variant="h6" className={classes.title} color="inherit">
+            <li><Link href="/" style={{ textDecoration: 'none' }} variant="h6" className={classes.title} color="inherit">
               Interactive Classroom
             </Link></li>
             <Typography>

@@ -12,6 +12,11 @@ import MyGames from "./MyGames/MyGames"
 import CreateRoomButton from "./createRoom/CreateRoomButton"
 import {getURL, checkRoomExistance} from "../helpers/newRoomHelper"
 
+import {
+  Switch,
+  Route,
+  useHistory,
+} from "react-router-dom";
 
 
 // const WebSocket = require("ws");
