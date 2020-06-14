@@ -11,6 +11,7 @@ export default function useGameData() {
     cards: [],
     flipped: [],
     solved:[],
+    turn:0,
     requestGame: false,
     disabled:false
   })
@@ -95,5 +96,6 @@ export default function useGameData() {
   }
   const setGame = game => setState({...state, game});
   const setRequestGame = val => setState({...state, requestGame:val});
-  return {state, fetchGameList, setRunningGame ,setGame, newGame, setRequestGame, flipCard}
+  const setTurn = id => {console.log("chosenTurn", id);setState({...state, turn:id})}
+  return {state, fetchGameList, setTurn, setRunningGame ,setGame, newGame, setRequestGame, flipCard}
 }
