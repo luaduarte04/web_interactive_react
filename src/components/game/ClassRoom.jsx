@@ -14,7 +14,7 @@ export default function ClassRoom({isTeacher,checkRoomExistance}) {
   const [room, setRoom] = useState();
   const [connection, setConnection] = useState();
   const [name, setName] = useState();
-  const [studentNames, setStudentNames] = useState([{name:"Class Turn",id:1}])
+  const [studentNames, setStudentNames] = useState([{name:"Class",id:1}])
   const {
     state,
     setRunningGame, 
@@ -38,6 +38,8 @@ export default function ClassRoom({isTeacher,checkRoomExistance}) {
         if(isTeacher) {
           fetchGameList()
         }
+      } else {
+        setRoom(false)
       }
     })
     .catch(err => console.log(err))
@@ -116,15 +118,21 @@ export default function ClassRoom({isTeacher,checkRoomExistance}) {
       }
     }
     console.log("new students=", result)
-    setStudentNames([{name:"Class Turn",id:1},...result])
+    setStudentNames([{name:"Class",id:1},...result])
   }
-
+  function whosTurn() {
+    for (const student of studentNames){
+      if (student.id === state.turn) {
+        return student.name
+      }
+    }
+  }
+  console.log("room state",room)
   return (
     
     <section>
-    {!room ? <h1> ROOM SESSION NO LONGER EXISTS</h1> : 
-      (!name && !isTeacher) && ( <Form  onSave={setUserName}/>)}
-      { (name || isTeacher) && (
+      {(!name && room && !isTeacher) && ( <Form  onSave={setUserName}/>)}      
+        {((name || isTeacher)&&room) && (
         <>
           {name && <h3>HI {name}</h3>}
           <section className="sidebar">
@@ -139,6 +147,9 @@ export default function ClassRoom({isTeacher,checkRoomExistance}) {
             <div>
               <StudentList students={studentNames} isTeacher={isTeacher} setTurn={setTurn}/>
             </div>
+            <div>
+              {whosTurn()&&<h5>{`${whosTurn()}'s turn`}</h5>}
+            </div>
             </section>
             <section className="schedule">
               <div>
@@ -152,8 +163,8 @@ export default function ClassRoom({isTeacher,checkRoomExistance}) {
               </div>
             </section>
           </>
-        )
-    }
+        )}
+        { !room && <h1> ROOM SESSION NO LONGER EXISTS</h1>}         
     </section>
     
   );
