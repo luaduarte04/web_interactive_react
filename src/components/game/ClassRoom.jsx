@@ -42,7 +42,15 @@ export default function ClassRoom({isTeacher,checkRoomExistance}) {
     if(connection) {
       connection.onopen = () => {     
         // console.log("sending initial connection")
-        connection.send(JSON.stringify({subject:"initial"}))
+        if (isTeacher) {
+          connection.send(JSON.stringify({
+            subject:"initial", 
+            teacher:true,
+            room:roomKey.id
+          }))
+        } else {
+          connection.send(JSON.stringify({subject:"initial", room:roomKey.id}))
+        }
       }
       connection.addEventListener("message", event => {
           const message = JSON.parse(event.data);
@@ -56,6 +64,8 @@ export default function ClassRoom({isTeacher,checkRoomExistance}) {
             // console.log("initializing existing game")
             setRunningGame(message.state);
         } else if (message.subject === "student_names") {
+          console.log("Student_name", message.students)
+          // message.student ? updateStudentNames(message.students) : setStudentNames([]);
           updateStudentNames(message.students)
         }  
       })
@@ -94,8 +104,10 @@ export default function ClassRoom({isTeacher,checkRoomExistance}) {
   }
   function updateStudentNames(students){
     const result = [];
-    for(const student of students) {
-      result.push(student.name)
+    if (students.length > 0) {
+      for(const student of students) {
+        result.push(student.name)
+      }
     }
     setStudentNames(result)
   }
