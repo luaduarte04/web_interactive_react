@@ -46,13 +46,14 @@ export default function Login(props) {
     method: 'post',
     body: {
       email, password
-    }, 
+    },
     onSuccess: () => history.push("/MyGames")
   })
 
   const handleLogging = async (event) => {
     event.preventDefault();
     const response = await doRequest();
+    console.log(response)
     props.setUser (response);
   }
   

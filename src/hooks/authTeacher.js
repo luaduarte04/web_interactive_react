@@ -1,14 +1,17 @@
 import React, { useState }from 'react';
 import axios from "axios"
 
-
 export default ({ url, method, body, onSuccess }) => {
   const [errors, setErrors] = useState(null);
 
   const doRequest = async () => {
     try {
       setErrors(null);
-      const response = await axios[method](url, body);
+      const instance = axios.create({
+        withCredentials: true
+      })
+      const response = await instance[method](url, body);
+      console.log(response.request)
       if (onSuccess){
         onSuccess(response.data)
       }
