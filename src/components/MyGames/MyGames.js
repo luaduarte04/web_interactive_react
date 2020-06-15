@@ -1,25 +1,76 @@
 import React, {useState} from 'react';
 import './MyGames.scss';
 
-import { Button, Typography } from '@material-ui/core';
+import {
+  Button,
+  makeStyles,
+  Typography
+} from '@material-ui/core';
 
 import GameList from './GameList';
 import filter from './filter.svg';
 import Filter from './Filter';
 
 
-export default function MyGames(props) {
-  const [showFilter, setShowFilter] = useState(false);
-  const [anchorEl, setAnchorEl] = React.useState(null);
-  const open = Boolean(anchorEl);
+const useStyles = makeStyles((theme) => ({
+  paper: {
+    marginTop: theme.spacing(8),
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+  },
+  avatar: {
+    margin: theme.spacing(1),
+    backgroundColor: theme.palette.primary.main,
+  },
+  form: {
+    width: '100%', // Fix IE 11 issue.
+    marginTop: theme.spacing(3),
+  },
+  submit: {
+    margin: theme.spacing(3, 0, 2),
+  },
+}));
 
-  const handleMenu = (event) => {
-    setAnchorEl(event.currentTarget);
+
+export default function MyGames(props) {
+  const classes = useStyles();
+  const [showFilter, setShowFilter] = useState(false);
+
+  const handleChange = (prev) => {
+    setShowFilter((prev) => !prev);
   };
 
   const handleClose = () => {
     setShowFilter(false);
   };
+
+  const buttonStyle = {
+    width: "100%",
+    backgroundColor: "#3f51b5",
+    color: "white",
+    border: "none",
+    fontSize: "medium",
+    borderRadius: "5px",
+    cursor: "pointer",
+    marginTop: "5%",
+    paddingTop: "2%",
+    paddingBottom: "2%",
+    textTransform: "uppercase",
+  }
+
+  const filterBox ={
+    position: "absolute",
+    width: "20%",
+    height: "auto",
+    right: "0",
+    marginRight: "5%",
+    zIndex: "1",
+    backgroundColor: "white",
+    padding: "5px 10px 10px 10px",
+    boxShadow: "0px 0px 5px 1px rgba(0,0,0,0.3)",
+    borderRadius: '5px',
+  }
 
   return (
     <main>
@@ -31,17 +82,17 @@ export default function MyGames(props) {
           variant="h2">
           My Games
         </Typography>
-        <form onSubmit={ e => {e.preventDefault(); setShowFilter(false) }}>
+        <form
+          onSubmit={ e => {e.preventDefault(); setShowFilter(false) }}
+        >
           <Button
             className="filter"
             color="primary"
             component="button"
             style={{ fontWeight: 'bold'}}
-            onClick={ e => {e.preventDefault(); setShowFilter(true) }}
-
-            //onClick={handleMenu}
+            onClick={ e => {e.preventDefault(); handleChange(e) }}
           >
-              Filter
+            Filter
             <img
               className="my-games-icon"
               style={{marginLeft: "10px"}}
@@ -49,20 +100,31 @@ export default function MyGames(props) {
               alt="filter icon" />
           </Button>
           { showFilter &&
-            <div>
+            <div style={filterBox}>
               <Filter />
               <button
                 onClick={handleClose}
                 type="submit"
-                style={{ fontWeight: 'bold'}}
+                style={buttonStyle}
               >
-                Set filter!
+                Set filter
               </button>
             </div> 
           }
         </form>
       </div>
       <GameList />
+      <form className={classes.form}>
+        <Button
+          type="submit"
+          fullWidth
+          variant="contained"
+          color="primary"
+          className={classes.submit}
+        >
+          CREATE ROOM
+        </Button>
+      </form>
     </main>
   )
 }

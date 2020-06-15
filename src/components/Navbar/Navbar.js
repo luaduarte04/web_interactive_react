@@ -128,7 +128,7 @@ function Navbar(props) {
                   </MenuItem>
                   <MenuItem>
                     <Link
-                      to="/teacher/createroom"
+                      to="/teacher/:id"
                       style={{textDecoration: "none", color: "rgba(0, 0, 0, 0.87)"}}
                       onClick={handleClose}
                     >

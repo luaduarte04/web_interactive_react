@@ -2,7 +2,7 @@ import React from 'react';
 
 import FormGroup from '@material-ui/core/FormGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
-import {Checkbox, Typography} from '@material-ui/core';
+import { Checkbox, Typography} from '@material-ui/core';
 
 import './MyGames.scss';
 import './Filter.scss';
@@ -37,27 +37,48 @@ export default function Filter(props) {
     textAlign: "left",
     fontSize: "0.5em",
     paddingTop: "2px",
+    paddingBottom: "2px",
     paddingLeft: "5px",
     marginTop: "4%",
+    textTransform: "uppercase",
   };
 
   const typographyCheckbox = {
-    fontSize: "0.7em",
+    fontSize: "0.8em",
+    marginLeft: "-5px",
   }
 
   return (
       <FormGroup column>
-        <FormControlLabel
-          control={
-            <Checkbox
-              checked={state.gameName}
-              onChange={handleChange}
-              name="gameName"
-              color="primary"
-            />
-          }
-          label="Game Name - A to Z"
-        />
+        <div>
+          <Typography
+            style={ typographyTitle }
+            color="primary"
+            component="p"
+            variant="p">
+            Game Name
+          </Typography>
+          <FormControlLabel
+            control={
+              <Checkbox
+                checked={state.gameName}
+                onChange={handleChange}
+                name="gameName"
+                color="primary"
+                size="small"
+              />
+            }
+            label={
+              <Typography
+                style={ typographyCheckbox }
+                color="primary"
+                component="p"
+                variant="p">
+                  From A - Z
+              </Typography>
+            }
+          />
+        </div>
         <div>
           <Typography
             style={ typographyTitle }
@@ -74,9 +95,18 @@ export default function Filter(props) {
                   onChange={handleChange}
                   name="subjectAlphabet"
                   color="primary"
+                  size="small"
                 />
               }
-              label="Alphabet"
+              label={
+                <Typography
+                  style={ typographyCheckbox }
+                  color="primary"
+                  component="p"
+                  variant="p">
+                    Alphabet
+                </Typography>
+              }
             />
             <FormControlLabel
               control={
@@ -85,9 +115,18 @@ export default function Filter(props) {
                   onChange={handleChange}
                   name="subjectNumbers"
                   color="primary"
+                  size="small"
                 />
               }
-              label="Numbers"
+              label={
+                <Typography
+                  style={ typographyCheckbox }
+                  color="primary"
+                  component="p"
+                  variant="p">
+                    Numbers
+                </Typography>
+              }
             />
             <FormControlLabel
               control={
@@ -96,9 +135,18 @@ export default function Filter(props) {
                   onChange={handleChange}
                   name="subjectColors"
                   color="primary"
+                  size="small"
                 />
               }
-              label="Colors"
+              label={
+                <Typography
+                  style={ typographyCheckbox }
+                  color="primary"
+                  component="p"
+                  variant="p">
+                    Colors
+                </Typography>
+              }
             />
           </div>
         </div>
@@ -118,9 +166,18 @@ export default function Filter(props) {
                   onChange={handleChange}
                   name="typeMemory"
                   color="primary"
+                  size="small"
                 />
               }
-              label="Memory"
+              label={
+                <Typography
+                  style={ typographyCheckbox }
+                  color="primary"
+                  component="p"
+                  variant="p">
+                    Memory
+                </Typography>
+              }
             />
             <FormControlLabel
               control={
@@ -129,9 +186,18 @@ export default function Filter(props) {
                   onChange={handleChange}
                   name="typeSorting"
                   color="primary"
+                  size="small"
                 />
               }
-              label="Sorting"
+              label={
+                <Typography
+                  style={ typographyCheckbox }
+                  color="primary"
+                  component="p"
+                  variant="p">
+                    Sorting
+                </Typography>
+              }
             />
             <FormControlLabel
               control={
@@ -140,9 +206,18 @@ export default function Filter(props) {
                   onChange={handleChange}
                   name="typePuzzle"
                   color="primary"
+                  size="small"
                 />
               }
-              label="Puzzle"
+              label={
+                <Typography
+                  style={ typographyCheckbox }
+                  color="primary"
+                  component="p"
+                  variant="p">
+                    Puzzle
+                </Typography>
+              }
             />
           </div>
         </div>
@@ -162,9 +237,18 @@ export default function Filter(props) {
                   onChange={handleChange}
                   name="gradeOne"
                   color="primary"
+                  size="small"
                 />
               }
-              label="1"
+              label={
+                <Typography
+                  style={ typographyCheckbox }
+                  color="primary"
+                  component="p"
+                  variant="p">
+                    1
+                </Typography>
+              }
             />
             <FormControlLabel
               control={
@@ -173,9 +257,18 @@ export default function Filter(props) {
                   onChange={handleChange}
                   name="gradeTwo"
                   color="primary"
+                  size="small"
                 />
               }
-              label="2"
+              label={
+                <Typography
+                  style={ typographyCheckbox }
+                  color="primary"
+                  component="p"
+                  variant="p">
+                    2
+                </Typography>
+              }
             />
             <FormControlLabel
               control={
@@ -184,9 +277,18 @@ export default function Filter(props) {
                   onChange={handleChange}
                   name="gradeThree"
                   color="primary"
+                  size="small"
                 />
               }
-              label="3"
+              label={
+                <Typography
+                  style={ typographyCheckbox }
+                  color="primary"
+                  component="p"
+                  variant="p">
+                    3
+                </Typography>
+              }
             />
           </div>
         </div>
@@ -206,9 +308,18 @@ export default function Filter(props) {
                   onChange={handleChange}
                   name="levelEasy"
                   color="primary"
+                  size="small"
                 />
               }
-              label="Easy"
+              label={
+                <Typography
+                  style={ typographyCheckbox }
+                  color="primary"
+                  component="p"
+                  variant="p">
+                    Easy
+                </Typography>
+              }
             />
             <FormControlLabel
               control={
@@ -217,9 +328,18 @@ export default function Filter(props) {
                   onChange={handleChange}
                   name="levelMedium"
                   color="primary"
+                  size="small"
                 />
               }
-              label="Medium"
+              label={
+                <Typography
+                  style={ typographyCheckbox }
+                  color="primary"
+                  component="p"
+                  variant="p">
+                    Medium
+                </Typography>
+              }
             />
             <FormControlLabel
               control={
@@ -228,35 +348,50 @@ export default function Filter(props) {
                   onChange={handleChange}
                   name="levelHard"
                   color="primary"
+                  size="small"
                 />
               }
-              label="Hard"
+              label={
+                <Typography
+                  style={ typographyCheckbox }
+                  color="primary"
+                  component="p"
+                  variant="p">
+                    Hard
+                </Typography>
+              }
             />
           </div>
         </div>
-        <FormControlLabel
-          style={{fontSize: "200px"}}
-          control={
-            <Checkbox
-              checked={state.date}
-              onChange={handleChange}
-              name="date"
-              color="primary"
-            />
-          }
-          label={
-            <Typography
-              style={ typographyCheckbox }
-              color="primary"
-              component="p"
-              variant="p">
-                Date - recent to old
-            </Typography>
-          }
-        />
+        <div>
+          <Typography
+            style={ typographyTitle }
+            color="primary"
+            component="p"
+            variant="p">
+            Creation Date
+          </Typography>
+          <FormControlLabel
+            control={
+              <Checkbox
+                checked={state.date}
+                onChange={handleChange}
+                name="date"
+                color="primary"
+                size="small"
+              />
+            }
+            label={
+              <Typography
+                style={ typographyCheckbox }
+                color="primary"
+                component="p"
+                variant="p">
+                  Recent to old
+              </Typography>
+            }
+          />
+        </div>
       </FormGroup>
   );
 }
-
-// 1 - we have to figure it out how the filters will work
-// 2 - i cant remove checkbox right after i click
