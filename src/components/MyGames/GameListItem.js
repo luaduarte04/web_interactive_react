@@ -18,7 +18,7 @@ import CopyLink from './CopyLink';
 import DeleteGame from './DeleteGame';
 
 
-function GameListItem(props) {
+function GameListItem({game}) {
   const [clickedShare, setClickedShare] = React.useState(false);
   const [clickedDelete, setClickedDelete] = React.useState(false);
 
@@ -29,8 +29,6 @@ function GameListItem(props) {
   const handleChangeDelete = () => {
     setClickedDelete((prev) => !prev);
   };
-
-  const game = props.game
   
   return (
     <React.Fragment>
@@ -51,7 +49,7 @@ function GameListItem(props) {
         <TableCell align="left">{game.type}</TableCell>
         <TableCell align="left">{game.grade}</TableCell>
         <TableCell align="left">{game.level}</TableCell>
-        <TableCell align="left">{game.date}</TableCell>
+        <TableCell align="left">{`${game.date.getDate()}/${game.date.getMonth()}/${game.date.getFullYear()}`}</TableCell>
         <TableCell align="center">
           <form onSubmit={ e => {e.preventDefault();}}>
             <button

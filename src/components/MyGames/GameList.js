@@ -26,8 +26,8 @@ const useStyles = makeStyles({
   }
 });
 
-function createData(gameName, subject, type, grade, level, date, gameLink) {
-  return { gameName, subject, type, grade, level, date, gameLink };
+function createData(id,gameName, subject, type, grade, level, date, gameLink) {
+  return {id, gameName, subject, type, grade, level, date, gameLink };
 }
 
 const savedGames = [
@@ -37,35 +37,38 @@ const savedGames = [
   // createData('Cupcake', 305, 3.7, 67, 4.3),
   // createData('Gingerbread', 356, 16.0, 49, 3.9),
   createData ( 
+    "id:1",
     'ABC',
     'Alphabet',
     'letters',
     2,
     "easy",
-    Date.UTC(),
+    new Date(),
     'https://github.com/nkbt/react-copy-to-clipboard',
   ),
   createData (
+    "id:2",
     'Numbers 0 to 9',
     'Numbers',
     'numbers',
     1,
     "medium",
-    Date.UTC(),
+    new Date(),
     'https://github.com/nkbt/react-copy-to-clipboard',
   ),
   createData ( 
+    "id:3",
     'Zoo Animals',
     'Animals',
     'color and size',
     1,
     "easy",
-    Date.UTC(),
+    new Date(),
     'https://github.com/nkbt/react-copy-to-clipboard',
   ),
 ];
 
-
+console.log("Date", Date.now())
 export default function GameList(props) {
   const classes = useStyles();
   
@@ -92,7 +95,7 @@ export default function GameList(props) {
         </TableHead>
         <TableBody>
           {savedGames.map((game) => (
-            <GameListItem game={game} />
+            <GameListItem key={game.id}game={game} />
           ))}
         </TableBody>
       </Table>

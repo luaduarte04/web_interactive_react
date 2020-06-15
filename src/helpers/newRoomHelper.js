@@ -1,7 +1,9 @@
 const axios = require('axios');
-
+const instance = axios.create({
+  withCredentials: true
+})
 export function getURL() {
-  return axios.get("/teacher/createroom")
+  return instance.get("/teacher/createroom")
   .then(res => {
     return res.data;
   })
@@ -10,7 +12,7 @@ export function getURL() {
 
 export function checkRoomExistance(roomKey){
 
-  return axios.get("/teacher/findroom",{
+  return instance.get("/teacher/findroom",{
     params:{id:roomKey}
   })
   .then(res => {

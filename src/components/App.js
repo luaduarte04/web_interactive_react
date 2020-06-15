@@ -25,33 +25,9 @@ export default function App() {
   const [ user, setUser ] = useState("");
   const history = useHistory();
 
-  async function handleLogout (event) {
-    event.preventDefault();
-    // await Auth.signOut();
-    setUser(false);
-    history.push("/home");
-  }
 
-  async function handleLogging (event) {
-    event.preventDefault();
-    // console.log("event", event.target.email.value)
-    // console.log("event2", event.target.password.value)
-    // if (user) {
-    //   setUser(event.target.email.value)
-    //   history.push("/MyGames");
-    // } else {
 
-    // }
-    try {
-      // await Auth.signIn(user.email, user.password);
-      // userHasAuthenticated(true);
-      setUser(event.target.email.value)
-      history.push("/MyGames");
-    } catch (e) {
-      alert(e.message);
-    }
-  }
-
+  console.log("setUser?", setUser, "user?", )
 
   // function to retrieve first name from database
   // useEffect(() => {
@@ -82,16 +58,12 @@ export default function App() {
         <Route exact path="/Logout">
           <Logout setUser={setUser} />
         </Route>
-        <Route exact path="/teacher/room/:id">
-          {/* <h1>HELLO</h1> */}
-          <ClassRoom  isTeacher={true}  checkRoomExistance={checkRoomExistance} />
-        </Route>
         <Route exact path="/teacher/:id">
           <CreateRoomButton getURL={getURL}/>
             {/* <ClassRoom wss={wss}/> */}
         </Route>
-        <Route exact path="/classroom/:id">.
-          <ClassRoom  isTeacher={false}  checkRoomExistance={checkRoomExistance} />
+        <Route exact path="/classroom/:id">
+          <ClassRoom  isTeacher={setUser}  checkRoomExistance={checkRoomExistance} />
         </Route>
       </Switch>
       <Copyright />
