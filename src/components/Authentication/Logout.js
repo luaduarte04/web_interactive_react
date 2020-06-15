@@ -5,10 +5,10 @@ import { useHistory } from "react-router-dom";
 export default function Logout(props) {
   let history = useHistory();
   const { doRequest } = authTeacher({
-    url: 'http://localhost:8080/logout/',
+    url: 'http://localhost:3001/logout/',
     method: 'post',
     body: {}, 
-    onSuccess: () => history.push("/home")
+    onSuccess: () => history.push("/")
   })
 
   useEffect(() => {

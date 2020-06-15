@@ -36,7 +36,7 @@ export default function Copyright() {
         {'Copyright © '}
         {new Date().getFullYear()}
         {', '}
-        <Link to="/home" style={linkStyle} color="inherit">
+        <Link to="/" style={linkStyle} color="inherit">
           Interactive Classroom
         </Link>
         {'.'}

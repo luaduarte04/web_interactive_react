@@ -14,7 +14,7 @@ export default function useGameData() {
     requestGame: false,
     disabled:false
   })
-  useEffect(() => {
+  function fetchGameList() {
     // console.log("usegameData useeffect")
     axios.get("/games")
     .then(res => {
@@ -24,7 +24,7 @@ export default function useGameData() {
       // console.log(`state.game22: ${state.game}`,cardId)
     })
     .catch(err =>  console.log(err));
-  }, []);
+  };
   useEffect(()=>{
     // console.log("---------------------------------------------------------",state.game)
   },[state.game])
@@ -95,5 +95,5 @@ export default function useGameData() {
   }
   const setGame = game => setState({...state, game});
   const setRequestGame = val => setState({...state, requestGame:val});
-  return {state,setRunningGame ,setGame, newGame, setRequestGame, flipCard}
+  return {state, fetchGameList, setRunningGame ,setGame, newGame, setRequestGame, flipCard}
 }
