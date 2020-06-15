@@ -10,7 +10,7 @@ import Filter from './Filter';
 
 export default function MyGames(props) {
   const [showFilter, setShowFilter] = useState(false);
-
+  console.log(props);
   return (
     <main>
       <div className="header">

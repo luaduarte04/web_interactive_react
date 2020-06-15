@@ -53,7 +53,6 @@ export default function Login(props) {
   const handleLogging = async (event) => {
     event.preventDefault();
     const response = await doRequest();
-    console.log(response)
     props.setUser (response);
   }
   

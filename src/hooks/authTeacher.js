@@ -11,7 +11,6 @@ export default ({ url, method, body, onSuccess }) => {
         withCredentials: true
       })
       const response = await instance[method](url, body);
-      console.log(response.request)
       if (onSuccess){
         onSuccess(response.data)
       }
