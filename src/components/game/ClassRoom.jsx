@@ -10,10 +10,11 @@ import {useParams} from "react-router-dom";
 
 
 export default function ClassRoom({isTeacher,checkRoomExistance}) {
+  const [userId, setUserId] = useState(Math.floor(100000 + Math.random() * 900000))
   const [room, setRoom] = useState();
   const [connection, setConnection] = useState();
   const [name, setName] = useState();
-  const [studentNames, setStudentNames] = useState([])
+  const [studentNames, setStudentNames] = useState([{name:"Class",id:1}])
   const {
     state,
     setRunningGame, 
@@ -22,27 +23,42 @@ export default function ClassRoom({isTeacher,checkRoomExistance}) {
     newGame,
     setRequestGame,
     fetchGameList,
+    setTurn,
   } = useGameData();
+  console.log("state turn", typeof state.turn)
 
   const roomKey = useParams();
   useEffect(()=> {
     
-    console.log("room Key", roomKey)
     checkRoomExistance(roomKey.id)
     .then((res) => {
-      setRoom(res.data)
+      if (res.data){
+        setRoom(res.data)
+        setConnection(socket());
+        if(isTeacher) {
+          fetchGameList()
+        }
+      } else {
+        setRoom(false)
+      }
     })
-    setConnection(socket());
-    if(isTeacher) {
-      fetchGameList()
-    }
+    .catch(err => console.log(err))
+   
   },[])
 
   useEffect(() => {
     if(connection) {
       connection.onopen = () => {     
         // console.log("sending initial connection")
-        connection.send(JSON.stringify({subject:"initial"}))
+        if (isTeacher) {
+          connection.send(JSON.stringify({
+            subject:"initial", 
+            teacher:true,
+            room:roomKey.id
+          }))
+        } else {
+          connection.send(JSON.stringify({subject:"initial", room:roomKey.id}))
+        }
       }
       connection.addEventListener("message", event => {
           const message = JSON.parse(event.data);
@@ -56,8 +72,11 @@ export default function ClassRoom({isTeacher,checkRoomExistance}) {
             // console.log("initializing existing game")
             setRunningGame(message.state);
         } else if (message.subject === "student_names") {
+          console.log("Student_name", message.students)
           updateStudentNames(message.students)
-        }  
+        }  else if(message.subject === "end-session"){
+          setRoom(false)
+        }
       })
     }
   },[connection])
@@ -70,12 +89,12 @@ export default function ClassRoom({isTeacher,checkRoomExistance}) {
           connection.send(JSON.stringify({subject:"player_move",state}));
       }
     }
-  }, [state.cards, state.flipped, state.solved])
+  }, [state.cards, state.flipped, state.solved, state.turn])
 
   useEffect(() => {
     if (connection) {   
       if(connection.readyState === WebSocket.OPEN) {
-        connection.send(JSON.stringify({subject:"setName",name}));
+        connection.send(JSON.stringify({subject:"setName",student: {name, id:userId}}));
       }
     }
   },[name])
@@ -83,7 +102,6 @@ export default function ClassRoom({isTeacher,checkRoomExistance}) {
   useEffect(() => {
     if (connection) {  
       if(state.requestGame && isTeacher){
-          // console.log("requesting new game");
         newGame();
       }
     }
@@ -94,19 +112,29 @@ export default function ClassRoom({isTeacher,checkRoomExistance}) {
   }
   function updateStudentNames(students){
     const result = [];
-    for(const student of students) {
-      result.push(student.name)
+    if (students.length > 0) {
+      for(const student of students) {
+        result.push(student.info)
+      }
     }
-    setStudentNames(result)
+    console.log("new students=", result)
+    setStudentNames([{name:"Class",id:1},...result])
   }
-
+  function whosTurn() {
+    for (const student of studentNames){
+      if (student.id === state.turn) {
+        return student.name
+      }
+    }
+  }
+  console.log("room state",room)
   return (
     
     <section>
-    {!room ? <h1> ROOM SESSION NO LONGER EXISTS</h1> : 
-      (!name && !isTeacher) && ( <Form  onSave={setUserName}/>)}
-      { (name || isTeacher) && (
+      {(!name && room && !isTeacher) && ( <Form  onSave={setUserName}/>)}      
+        {((name || isTeacher)&&room) && (
         <>
+          {name && <h3>HI {name}</h3>}
           <section className="sidebar">
             <hr className="sidebar__separator sidebar--centered" />
             <div className="sidebar__menu" >
@@ -117,7 +145,10 @@ export default function ClassRoom({isTeacher,checkRoomExistance}) {
               />}
             </div>
             <div>
-              <StudentList names={studentNames}/>
+              <StudentList students={studentNames} isTeacher={isTeacher} setTurn={setTurn}/>
+            </div>
+            <div>
+              {whosTurn()&&<h5>{`${whosTurn()}'s turn`}</h5>}
             </div>
             </section>
             <section className="schedule">
@@ -126,14 +157,14 @@ export default function ClassRoom({isTeacher,checkRoomExistance}) {
                   cards={state.cards}
                   flipped={state.flipped}
                   onClick={flipCard}
-                  disabled = {state.disabled}
+                  disabled = {state.disabled ? true: (isTeacher ? false: (state.turn === 1 ? false : (userId === state.turn ? false: true)))}
                   solved={state.solved}
                 />
               </div>
             </section>
           </>
-        )
-    }
+        )}
+        { !room && <h1> ROOM SESSION NO LONGER EXISTS</h1>}         
     </section>
     
   );
