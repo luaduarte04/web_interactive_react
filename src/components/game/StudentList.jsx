@@ -2,11 +2,13 @@ import React from "react";
 import StudentListItem from "./StudentListItem"
 
 export default function StudentList(props) {
-   const {names} = props;
+   const {students, setTurn, isTeacher} = props;
    let count = 1 ;
-  return <>{names.map((studentName) =>
+  return <>{students.map((student) =>
     <StudentListItem
       key={count++}
-      name={studentName}  />
+      name={student.name} 
+      isTeacher={isTeacher}
+      setTurn={() => setTurn(student.id)} />
   )}</>
 }

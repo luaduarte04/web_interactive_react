@@ -74,6 +74,13 @@ export default function GameList(props) {
       <Table className={classes.table} aria-label="simple table">
         <TableHead>
           <TableRow>
+          <TableCell
+            className={classes.tableCategories}
+            align="center"
+            textAlign="center"
+          >
+            Select{<br/>}Game
+            </TableCell>
             <TableCell className={classes.tableCategories} align="left">Game Name</TableCell>
             <TableCell className={classes.tableCategories} align="left">Subject</TableCell>
             <TableCell className={classes.tableCategories} align="left">Type</TableCell>

@@ -4,6 +4,8 @@ import './GameList.scss';
 import {
   TableCell,
   TableRow,
+  FormControlLabel,
+  Checkbox,
   Fade,
 } from '@material-ui/core';
 
@@ -34,6 +36,16 @@ function GameListItem(props) {
     <React.Fragment>
       {!clickedShare && !clickedDelete &&
       <TableRow key={game.name}>
+        <TableCell align="center">
+          <FormControlLabel
+            control={
+              <Checkbox
+                name="select-game"
+                color="primary"
+              />
+            }
+          />
+        </TableCell>
         <TableCell align="left">{game.gameName}</TableCell>
         <TableCell align="left">{game.subject}</TableCell>
         <TableCell align="left">{game.type}</TableCell>
@@ -58,7 +70,7 @@ function GameListItem(props) {
       </TableRow>}
       { clickedShare &&
         <TableRow>
-          <TableCell colSpan={7}>
+          <TableCell colSpan={8}>
               <Fade in={clickedShare}>
                   <CopyLink gameLink={ game.gameLink } handleChangeShare={handleChangeShare} />
               </Fade>
@@ -67,7 +79,7 @@ function GameListItem(props) {
       }
       { clickedDelete &&
         <TableRow>
-          <TableCell colSpan={7}>
+          <TableCell colSpan={8}>
               <Fade in={clickedDelete}>
                   <DeleteGame handleChangeDelete={handleChangeDelete} />
               </Fade>

@@ -57,6 +57,7 @@ function Navbar(props) {
     color: "white",
     textDecoration: "none"
   }
+  
   return (
       <div className={classes.root}>
         <AppBar position="static">
@@ -104,7 +105,9 @@ function Navbar(props) {
                   open={open}
                   onClose={handleClose}
                 >
-                  <MenuItem onClick={handleClose}>{ props.user.first_name }</MenuItem>
+                  <MenuItem onClick={handleClose}>
+                    Hi { props.user.first_name },
+                  </MenuItem>
                   <MenuItem>
                     <Link
                       to="/MyGames"
@@ -124,9 +127,18 @@ function Navbar(props) {
                     </Link>
                   </MenuItem>
                   <MenuItem>
+                    <Link
+                      to="/teacher/:id"
+                      style={{textDecoration: "none", color: "rgba(0, 0, 0, 0.87)"}}
+                      onClick={handleClose}
+                    >
+                      Create Room
+                    </Link>
+                  </MenuItem>
+                  <MenuItem>
                     <Link 
                       to="/Logout" 
-                      style={linkStyle}>
+                      style={{textDecoration: "none", color: "rgba(0, 0, 0, 0.87)"}}>
                       Logout
                     </Link>
                   </MenuItem>

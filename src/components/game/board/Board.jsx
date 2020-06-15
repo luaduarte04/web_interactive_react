@@ -4,7 +4,7 @@ import Card from '../card/Card'
 import "./board.css"
 // const WebSocket = require("ws");
 export default function Board(props){
-  const {cards, flipped, onClick, disabled, solved} = props
+  const {cards, flipped, onClick, disabled, solved, setTurn} = props
   
   // useEffect(() => {
   //   const wss = new WebSocket('ws://localhost:12345'),
@@ -35,7 +35,7 @@ export default function Board(props){
   //     }
   //   }
   // })
- 
+ console.log("is it disabled for me?", disabled)
 
   return (
     <>
