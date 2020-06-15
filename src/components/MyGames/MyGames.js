@@ -10,6 +10,16 @@ import Filter from './Filter';
 
 export default function MyGames(props) {
   const [showFilter, setShowFilter] = useState(false);
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const open = Boolean(anchorEl);
+
+  const handleMenu = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setShowFilter(false);
+  };
 
   return (
     <main>
@@ -27,8 +37,10 @@ export default function MyGames(props) {
             color="primary"
             component="button"
             style={{ fontWeight: 'bold'}}
-            onClick={ e => {e.preventDefault(); setShowFilter(true) }}>
-            { showFilter && <Filter /> }
+            onClick={ e => {e.preventDefault(); setShowFilter(true) }}
+
+            //onClick={handleMenu}
+          >
               Filter
             <img
               className="my-games-icon"
@@ -36,6 +48,18 @@ export default function MyGames(props) {
               src={filter}
               alt="filter icon" />
           </Button>
+          { showFilter &&
+            <div>
+              <Filter />
+              <button
+                onClick={handleClose}
+                type="submit"
+                style={{ fontWeight: 'bold'}}
+              >
+                Set filter!
+              </button>
+            </div> 
+          }
         </form>
       </div>
       <GameList />
