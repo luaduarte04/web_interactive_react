@@ -55,7 +55,6 @@ export default function Login(props) {
     const response = await doRequest();
     sessionStorage.setItem('username', JSON.stringify(response));
     props.setUser (response);
-    console.log("username in storage is:",sessionStorage.getItem('username'))
   }
   
   const linkStyle = {

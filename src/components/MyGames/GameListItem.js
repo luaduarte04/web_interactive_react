@@ -30,7 +30,6 @@ function GameListItem(props) {
     setClickedDelete((prev) => !prev);
   };
 
-  console.log(props)
   const game = props.game
   
   return (
