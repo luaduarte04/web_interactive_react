@@ -6,7 +6,6 @@ import Logout from "./Authentication/Logout";
 import ResetPassword from "./Authentication/ResetPassword";
 import Copyright from "./Authentication/Copyright";
 import ClassRoom from "./game/ClassRoom"
-
 import HomePage from "./HomePage/HomePage";
 import MyGames from "./MyGames/MyGames"
 import CreateRoomButton from "./createRoom/CreateRoomButton"
@@ -17,7 +16,6 @@ import { Switch,Route } from "react-router-dom";
 export default function App() {
   const loggedIn = JSON.parse(sessionStorage.getItem('username'));
   const [ user, setUser ] = useState( loggedIn || null);
-  const history = useHistory();
 
   return (
     <React.Fragment>
