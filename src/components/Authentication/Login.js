@@ -41,9 +41,7 @@ export default function Login(props) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   let history = useHistory();
-  console.log("props",props.user)
   if (props.user){
-    console.log("hellp")
     history.push('/myGames')
   }
   const { doRequest, errors } = authTeacher({

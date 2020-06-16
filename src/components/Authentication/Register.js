@@ -48,6 +48,8 @@ export default function Register(props) {
   const [email, setEmail] = useState('');
   const [avatar, setAvatar] = useState("https://i.imgur.com/LpaY82x.png");
   const [password, setPassword] = useState('');
+  const [error, setError] = useState(false);
+  const [errorMessage, setErrorMessage] = useState({});
   let history = useHistory();
   if (props.user){
     history.push('/myGames')
@@ -63,10 +65,36 @@ export default function Register(props) {
 
   const handleRegistration = async (event) => {
     event.preventDefault();
-    const response = await doRequest();
-    response === undefined || sessionStorage.setItem('username', JSON.stringify(response));
-    props.setUser(response);
-    history.push("/MyGames")
+    let isError = false;
+    const pattern = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
+            
+    if (first_name.length < 2) {
+      isError = true;
+      setError(true);
+      setErrorMessage({...setErrorMessage, first_name: "first Name is too small"});
+    } else if (last_name.length < 2) {
+      isError = true;
+      setError(true);
+      setErrorMessage({...setErrorMessage, last_name: "last Name is too small"});
+    } else if (!pattern.test(email)) {
+      isError = true;
+      setError(true);
+      setErrorMessage({...setErrorMessage, email: "please enter a valid email"});
+    } else if(password.length < 5){
+      isError = true;
+      setError(true);
+      setErrorMessage({...setErrorMessage, password: "password need at least five characters"});
+    }
+    
+    if (!isError) {
+      isError = false;
+      setError(false);
+      setErrorMessage({});
+      const response = await doRequest();
+      response === undefined || sessionStorage.setItem('username', JSON.stringify(response));
+      props.setUser(response);
+      history.push("/MyGames")
+    }
   }
 
   return (
@@ -83,6 +111,7 @@ export default function Register(props) {
             <Grid container spacing={2}>
               <Grid item xs={12} sm={6}>
                 <TextField
+                  error={!!errorMessage.first_name}
                   autoComplete="fname"
                   name="firstName"
                   variant="outlined"
@@ -93,10 +122,12 @@ export default function Register(props) {
                   autoFocus
                   value={first_name}
                   onChange = {event => setFirstName(event.target.value)}
+                  helperText = {errorMessage.first_name}
                 />
               </Grid>
               <Grid item xs={12} sm={6}>
                 <TextField
+                  error={!!errorMessage.last_name}
                   variant="outlined"
                   required
                   fullWidth
@@ -106,10 +137,12 @@ export default function Register(props) {
                   autoComplete="lname"
                   value={last_name}
                   onChange = {event => setLastName(event.target.value)}
+                  helperText = {errorMessage.last_name}
                 />
               </Grid>
               <Grid item xs={12}>
                 <TextField
+                  error={!!errorMessage.email}
                   variant="outlined"
                   required
                   fullWidth
@@ -119,10 +152,12 @@ export default function Register(props) {
                   autoComplete="email"
                   value={email}
                   onChange = {event => setEmail(event.target.value)}
+                  helperText = {errorMessage.email}
                 />
               </Grid>
               <Grid item xs={12}>
                 <TextField
+                  error={!!errorMessage.password}
                   variant="outlined"
                   required
                   fullWidth
@@ -133,6 +168,7 @@ export default function Register(props) {
                   autoComplete="current-password"
                   value={password}
                   onChange = {event => setPassword(event.target.value)}
+                  helperText = {errorMessage.password}
                 />
               </Grid>
             </Grid>
