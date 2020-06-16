@@ -45,7 +45,7 @@ export default function MyGames(props) {
     .then(response => {
       setGames(response.teacherGames);
     })
-  }, []);;
+  }, []);
   
   const handleChange = (prev) => {
     setShowFilter((prev) => !prev);
