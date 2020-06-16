@@ -3,6 +3,7 @@ import './MyGames.scss';
 import { Button, makeStyles, Typography } from '@material-ui/core';
 import GameList from './GameList';
 import filter from './filter.svg';
+import addGame from './add-game.svg';
 import Filter from './Filter';
 import authTeacher from "../../hooks/authTeacher";
 
@@ -71,7 +72,7 @@ export default function MyGames({user}) {
     fontSize: "medium",
     borderRadius: "5px",
     cursor: "pointer",
-    marginTop: "5%",
+    marginTop: "15%",
     paddingTop: "2%",
     paddingBottom: "2%",
     textTransform: "uppercase",
@@ -88,6 +89,7 @@ export default function MyGames({user}) {
     padding: "5px 10px 10px 10px",
     boxShadow: "0px 0px 5px 1px rgba(0,0,0,0.3)",
     borderRadius: '5px',
+    marginTop: "4%",
   }
   return (
     <main>
@@ -100,8 +102,24 @@ export default function MyGames({user}) {
           My Games
         </Typography>
         <form
+          className="buttons-form-cantainer"
           onSubmit={ e => {e.preventDefault(); setShowFilter(false) }}
         >
+          <Button
+            className="create-game-button-mygames-page"
+            color="primary"
+            component="button"
+            style={{ fontWeight: 'bold', marginRight: "5%"}}
+            href="/newgame"
+          >
+            Create New Game
+            <img
+              className="my-games-icon"
+              style={{marginLeft: "10px"}}
+              src={addGame}
+              alt="create new game icon"
+            />
+          </Button>
           <Button
             className="filter"
             color="primary"
@@ -114,7 +132,8 @@ export default function MyGames({user}) {
               className="my-games-icon"
               style={{marginLeft: "10px"}}
               src={filter}
-              alt="filter icon" />
+              alt="filter icon"
+            />
           </Button>
           { showFilter &&
             <div style={filterBox}>
@@ -134,16 +153,6 @@ export default function MyGames({user}) {
       <div className={classes.form}>
         <CreateRoomButton getURL={getURL} />
       </div>
-      <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            color="primary"
-            className={classes.submit}
-            onClick={() => history.push("/newgame")}
-          >
-        CREATE NEW GAME
-      </Button>
     </main>
   )
 }

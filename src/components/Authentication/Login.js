@@ -88,6 +88,7 @@ export default function Login(props) {
                   label="Email Address"
                   name="email"
                   autoComplete="email"
+                  type="email"
                   value={email}
                   onChange = {event => setEmail(event.target.value)}
                 />

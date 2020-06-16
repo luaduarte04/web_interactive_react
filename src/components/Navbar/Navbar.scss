@@ -1,0 +1,26 @@
+.welcome-back {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  // text-align: right;
+}
+
+.little-avatar {
+  width: 15%;
+  height: 15%;
+  margin: 0% 10%;
+}
+
+.little-avatar img {
+  border-radius: 50%;
+}
+
+.arrow-dropdown {
+  width: 35px;
+  height: 35px;
+  background-image: url('./arrow_dropdown.svg');
+  background-repeat: no-repeat;
+  background-size: contain;
+}

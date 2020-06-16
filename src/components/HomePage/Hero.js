@@ -23,16 +23,32 @@ export default function Hero(props) {
             variant="h5">
             Bring meaningful experiences to your classroom 
           </Typography>
-          <Button
-            color="primary"
-            variant="contained"
-            size="large"
-            // className={styles.button}
-            //component="a"
-            href="/Register"
-            style={{ marginTop: "10%", marginBottom: "10%" }}>
-            Register
-          </Button>
+          { props.user && (
+            <Button
+              color="primary"
+              variant="contained"
+              size="large"
+              // className={styles.button}
+              //component="a"
+              href="/newgame"
+              style={{ marginTop: "10%", marginBottom: "10%" }}
+            >
+              Create Game
+            </Button>
+          )}
+          { !props.user && (
+            <Button
+              color="primary"
+              variant="contained"
+              size="large"
+              // className={styles.button}
+              //component="a"
+              href="/Register"
+              style={{ marginTop: "10%", marginBottom: "10%" }}
+            >
+              Register
+            </Button>
+          )}
         </div>
       </div>
     </section>

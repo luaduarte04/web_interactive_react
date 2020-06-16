@@ -7,7 +7,7 @@ import ProductPreview from './ProductPreview';
 export default function HomePage(props) {
   return (
     <React.Fragment>
-      <Hero />
+      <Hero user={props.user} />
       <TheProduct />
       <ProductPreview />
     </React.Fragment>

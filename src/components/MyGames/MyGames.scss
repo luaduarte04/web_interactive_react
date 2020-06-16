@@ -10,6 +10,13 @@ main {
   margin-bottom: 5%;
 }
 
+.buttons-form-cantainer {
+  width: 40%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+
 .my-games-icon {
   height: 20px;
   width: 20px;

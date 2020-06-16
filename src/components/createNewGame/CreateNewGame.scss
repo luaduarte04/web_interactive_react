@@ -1,0 +1,62 @@
+.super-div-create-game {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.create-game-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 96%;
+  margin: 2% 0%;
+}
+
+.game-configuration-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 30%;
+}
+
+// input {
+//   border: #3f51b5 solid 3px;
+//   width: 80%;
+//   height: 7%;
+//   border-radius: 5px;
+// }
+
+input::placeholder {
+  color: #3f51b5;
+}
+
+.game-load-img-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 65%;
+  height: auto;
+}
+
+.img-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 96%;
+  height: auto;
+  margin-bottom: 3%;
+}
+
+.url-div-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+}
+
+.url-div-container-input {
+  width: 100%;
+  text-transform: uppercase;
+  margin-bottom: 1%;
+}
