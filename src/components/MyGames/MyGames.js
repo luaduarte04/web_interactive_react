@@ -123,7 +123,6 @@ export default function MyGames(props) {
         </form>
       </div>
       {games && <GameList games ={games}/>}
-      <GameList />
       <div className={classes.form}>
         <CreateRoomButton getURL={getURL} />
       </div>
