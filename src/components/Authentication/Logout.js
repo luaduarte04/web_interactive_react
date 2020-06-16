@@ -8,14 +8,17 @@ export default function Logout(props) {
     url: 'http://localhost:3001/logout/',
     method: 'post',
     body: {}, 
-    onSuccess: () => history.push("/")
+    // onSuccess: () => history.push("/")
   })
 
   useEffect(() => {
-    doRequest();
-    sessionStorage.clear();
-    props.setUser(false);
-  }, []);
-
+    doRequest()
+    .then(() => {
+      sessionStorage.clear();
+      props.setUser(false);
+      history.push("/")
+    })
+    .catch(err => console.log(err))
+  });
  return <div>Signing you out...</div>;
 }
