@@ -1,24 +1,31 @@
 .flip-container{
   perspective: 1000px;
   display: inline-block;
-  border: 1px solid black;
-  /* background: black; */
+  border: 2px solid #3f51b5;
+  margin: 2px 2px;
+  // background-color: #3f51b5;
+  // background-blend-mode: luminosity;
 }
 
 .flip-container.flipped .flipper {
   transform: rotateY(180deg);
+  background-color: #3f51b5;
+  // background-blend-mode: multiply;
 }
+
 .flipper{
   transition: 0.6s;
   transform-style: preserve-3d;
-  position: relative;
+  // position: relative;
 }
+
 .front, .back {
-  backface-visibility: hidden;
-  position: absolute;
-  left: 0;
-  top: 0;
+  // backface-visibility: hidden;
+  // position: absolute;
+  // left: 0;
+  // top: 0;
 }
+
 .back {
   z-index: 2;
   transform: rotateY(0deg);
@@ -27,8 +34,4 @@
 .back {
   z-index: 2;
   transform: rotateY(180deg);
-}
-.size {
-  height: 100px;
-  width: 100px;
 }

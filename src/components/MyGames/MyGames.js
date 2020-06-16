@@ -6,6 +6,10 @@ import filter from './filter.svg';
 import Filter from './Filter';
 import authTeacher from "../../hooks/authTeacher";
 
+import CreateRoomButton from '../createRoom/CreateRoomButton';
+import {getURL, checkRoomExistance} from '../../helpers/newRoomHelper';
+
+
 const useStyles = makeStyles((theme) => ({
   paper: {
     marginTop: theme.spacing(8),
@@ -119,17 +123,10 @@ export default function MyGames(props) {
         </form>
       </div>
       {games && <GameList games ={games}/>}
-      <form className={classes.form}>
-        <Button
-          type="submit"
-          fullWidth
-          variant="contained"
-          color="primary"
-          className={classes.submit}
-        >
-          CREATE ROOM
-        </Button>
-      </form>
+      <GameList />
+      <div className={classes.form}>
+        <CreateRoomButton getURL={getURL} />
+      </div>
     </main>
   )
 }

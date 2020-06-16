@@ -1,0 +1,26 @@
+.student-item-container {
+ border: #3f51b5 solid 2px;
+ width: 18%;
+ height: auto;
+ padding: 2px;
+ display: flex;
+ flex-direction: column;
+ align-items: center;
+ margin-top: 2%;
+ cursor: pointer;
+ margin: 0 5px 10px 5px;
+}
+
+.student-avatar {
+  width: 70px;
+  height: 70px;
+  background-color: #3f51b5 ;
+  background-image: url("./profile-placeholder.svg");
+  background-repeat: no-repeat;
+  background-size: contain;
+  margin-top: 5%;
+}
+
+.student-item-container p {
+  color: #3f51b5;
+}

@@ -1,0 +1,75 @@
+.super-div-main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.classroom-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 96%;
+}
+
+.sidebar {
+  width: 50%;
+  height: auto;
+}
+
+.avatar {
+  width: 150px;
+  height: 150px;
+  background-color: #3f51b5 ;
+  background-image: url("./profile-placeholder.svg");
+  background-repeat: no-repeat;
+  background-size: contain;
+  margin-top: 5%;
+}
+
+.section-game {
+  width: 50%;
+  height: auto;
+  margin: 2% 0% 0% 5%;
+}
+
+.classroom-board {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 535px;
+  border: #3f51b5 solid 2px;
+  
+}
+
+.game-area-title {
+  width: 75%;
+  height: auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 1%;
+}
+
+.game-area {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  width: 90%;
+  height: 86%;
+  padding-left: 7%;
+  margin-bottom: 3%;
+}
+
+.select-student-container {
+  width: 100%;
+  height: auto;
+}
+
+.whos-turn {
+  font-size: 1em;
+  color: #3f51b5;
+  margin: 10px 0px 5px 10px;
+}

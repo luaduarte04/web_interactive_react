@@ -1,9 +1,21 @@
 import React from "react";
 // import "components/DayListItem.scss"
-import classNames from "classnames";
+import './StudentListItem.scss';
 
 export default function StudentListItem({name,setTurn, isTeacher}) {
   return (
-      <p onClick={()=> isTeacher ? setTurn() : null}>{name}</p>
+    <>
+    <div
+      className="student-item-container"
+      onClick={()=> isTeacher ? setTurn() : null}
+    >
+      <div>
+        <div className="student-avatar"></div>
+      </div>
+      <p>
+        {name}
+      </p>
+    </div>
+  </>
   );
 }
