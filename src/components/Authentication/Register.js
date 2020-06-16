@@ -49,19 +49,24 @@ export default function Register(props) {
   const [avatar, setAvatar] = useState("https://i.imgur.com/LpaY82x.png");
   const [password, setPassword] = useState('');
   let history = useHistory();
+  if (props.user){
+    history.push('/myGames')
+  }
   const { doRequest, errors } = authTeacher({
     url: 'http://localhost:3001/register',
     method: 'post',
     body: {
       first_name, last_name, email, avatar, password
     }, 
-    onSuccess: () => history.push("/MyGames")
+    // onSuccess: () => history.push("/MyGames")
   })
 
   const handleRegistration = async (event) => {
     event.preventDefault();
     const response = await doRequest();
-    props.setUser (response);
+    response === undefined || sessionStorage.setItem('username', JSON.stringify(response));
+    props.setUser(response);
+    history.push("/MyGames")
   }
 
   return (

@@ -17,7 +17,6 @@ import { Switch,Route } from "react-router-dom";
 export default function App() {
   const loggedIn = JSON.parse(sessionStorage.getItem('username')) === undefined ? null : JSON.parse(sessionStorage.getItem('username')) ; 
   const [ user, setUser ] = useState( loggedIn || null);
-  console.log("goddam user", user);
   
   return (
     <React.Fragment>
@@ -30,10 +29,10 @@ export default function App() {
          <MyGames user={user}/>
         </Route>
         <Route exact path="/Register">
-          <Register setUser={setUser}/>
+          <Register user={user}setUser={setUser}/>
         </Route>
-        <Route exact path="/Login">
-          <Login setUser={setUser}/>
+        <Route exact  path="/Login">
+          <Login user={user} setUser={setUser}/>
         </Route>
         <Route exact path="/ResetPassword">
           <ResetPassword />
