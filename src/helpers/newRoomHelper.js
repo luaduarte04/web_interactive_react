@@ -10,10 +10,10 @@ export function getURL() {
   .catch(err => console.log('error', err))
 }
 
-export function checkRoomExistance(roomKey){
+export function checkRoomExistance(roomKey,isTeacher){
 
   return instance.get("/teacher/findroom",{
-    params:{id:roomKey}
+    params:{id:roomKey,isTeacher}
   })
   .then(res => {
     return res;

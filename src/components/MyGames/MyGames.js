@@ -8,6 +8,9 @@ import authTeacher from "../../hooks/authTeacher";
 
 import CreateRoomButton from '../createRoom/CreateRoomButton';
 import {getURL, checkRoomExistance} from '../../helpers/newRoomHelper';
+import {useHistory} from "react-router-dom";
+
+
 
 
 const useStyles = makeStyles((theme) => ({
@@ -30,22 +33,27 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function MyGames(props) {
+export default function MyGames({user}) {
   const classes = useStyles();
   const [showFilter, setShowFilter] = useState(false);
   const [games, setGames] = useState("");
+  const history = useHistory();
+  
   const { doRequest } = authTeacher({
     url: 'http://localhost:3001/teacher/games',
     method: 'get',
     body: {}
   })
-
   useEffect( () => {
-    doRequest()
-    .then(response => {
-      setGames(response.teacherGames);
-    })
-  }, []);;
+    if (!user){
+      history.push('/login')
+    } else {
+      doRequest()
+      .then(response => {
+        setGames(response.teacherGames);
+      })
+    }
+  }, []);
   
   const handleChange = (prev) => {
     setShowFilter((prev) => !prev);
@@ -126,6 +134,16 @@ export default function MyGames(props) {
       <div className={classes.form}>
         <CreateRoomButton getURL={getURL} />
       </div>
+      <Button
+            type="submit"
+            fullWidth
+            variant="contained"
+            color="primary"
+            className={classes.submit}
+            onClick={() => history.push("/newgame")}
+          >
+        CREATE NEW GAME
+      </Button>
     </main>
   )
 }

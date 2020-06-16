@@ -41,6 +41,11 @@ export default function Login(props) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   let history = useHistory();
+  console.log("props",props.user)
+  if (props.user){
+    console.log("hellp")
+    history.push('/myGames')
+  }
   const { doRequest, errors } = authTeacher({
     url: 'http://localhost:3001/login',
     method: 'post',
@@ -53,8 +58,8 @@ export default function Login(props) {
   const handleLogging = async (event) => {
     event.preventDefault();
     const response = await doRequest();
-    sessionStorage.setItem('username', JSON.stringify(response));
-    props.setUser (response);
+    response === undefined || sessionStorage.setItem('username', JSON.stringify(response));
+    props.setUser(response || null);
   }
   
   const linkStyle = {

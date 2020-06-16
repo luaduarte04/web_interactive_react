@@ -8,7 +8,6 @@ export default function Logout(props) {
     url: 'http://localhost:3001/logout/',
     method: 'post',
     body: {}, 
-    // onSuccess: () => history.push("/")
   })
 
   useEffect(() => {

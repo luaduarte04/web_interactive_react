@@ -10,14 +10,15 @@ import HomePage from "./HomePage/HomePage";
 import MyGames from "./MyGames/MyGames"
 import CreateRoomButton from "./createRoom/CreateRoomButton"
 import {getURL, checkRoomExistance} from "../helpers/newRoomHelper"
+import CreateNewGame from "./createNewGame/CreateNewGame"
 
 import { Switch,Route } from "react-router-dom";
 
 export default function App() {
-  const loggedIn = JSON.parse(sessionStorage.getItem('username'));
+  const loggedIn = JSON.parse(sessionStorage.getItem('username')) === undefined ? null : JSON.parse(sessionStorage.getItem('username')) ; 
   const [ user, setUser ] = useState( loggedIn || null);
 
-
+  
   return (
     <React.Fragment>
       <Navbar user={user}/>
@@ -29,10 +30,10 @@ export default function App() {
          <MyGames user={user}/>
         </Route>
         <Route exact path="/Register">
-          <Register setUser={setUser}/>
+          <Register user={user}setUser={setUser}/>
         </Route>
-        <Route exact path="/Login">
-          <Login setUser={setUser}/>
+        <Route exact  path="/Login">
+          <Login user={user} setUser={setUser}/>
         </Route>
         <Route exact path="/ResetPassword">
           <ResetPassword />
@@ -48,8 +49,12 @@ export default function App() {
           <CreateRoomButton getURL={getURL}/>
             {/* <ClassRoom wss={wss}/> */}
         </Route>
+        <Route exact path="/newgame">
+          <CreateNewGame user={user}/>
+            {/* <ClassRoom wss={wss}/> */}
+        </Route>
         <Route exact path="/classroom/:id">
-          <ClassRoom  isTeacher={setUser}  checkRoomExistance={checkRoomExistance} />
+          <ClassRoom  user={user}  checkRoomExistance={checkRoomExistance} />
         </Route>
       </Switch>
       <Copyright />

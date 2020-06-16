@@ -11,6 +11,7 @@ export default ({ url, method, body, onSuccess }) => {
         withCredentials: true
       })
       const response = await instance[method](url, body);
+
       if (onSuccess){
         onSuccess(response.data)
       }
@@ -19,9 +20,10 @@ export default ({ url, method, body, onSuccess }) => {
       setErrors(
         <div className="alert alert-danger">
           <h4>Ooops...</h4>
-            <ul>{err.response.statusText}</ul>
+            <ul>{err.response}</ul>
         </div>
       );
+      console.log(err);
     }
   };
   return { doRequest, errors };

@@ -47,17 +47,18 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function ClassRoom({props,isTeacher,checkRoomExistance}) {
+export default function ClassRoom({props,user,checkRoomExistance}) {
   const classes = useStyles();
   const [userId, setUserId] = useState(Math.floor(100000 + Math.random() * 900000))
   const [error, setError] = useState()
+  const [currentGameInfo, setCurrentGameInfo] = useState()
   const [room, setRoom] = useState();
   const [connection, setConnection] = useState();
   const [name, setName] = useState();
   const [studentNames, setStudentNames] = useState([{name:"",id:1}])
-  // const [studentNames, setStudentNames] = useState([{name:"Class",id:1}])
-  const [currentGameInfo, setCurrentGameInfo] = useState()
 
+  let isTeacher = false;
+  if (user) isTeacher = true;
   const {
     state,
     setRunningGame, 
@@ -68,7 +69,6 @@ export default function ClassRoom({props,isTeacher,checkRoomExistance}) {
     fetchGameList,
     setTurn,
   } = useGameData();
-  console.log("state turn", typeof state.turn)
 
   const roomKey = useParams();
   useEffect(()=> {
@@ -76,6 +76,7 @@ export default function ClassRoom({props,isTeacher,checkRoomExistance}) {
     checkRoomExistance(roomKey.id, isTeacher)
     .then((res) => {
       if (res.data){
+        console.log("after fethcing game",res)
         setRoom(res.data)
         setConnection(socket());
         if(isTeacher) {
@@ -91,6 +92,7 @@ export default function ClassRoom({props,isTeacher,checkRoomExistance}) {
       }
     })
     .catch(err => console.log(err))
+
    
   },[])
 
@@ -105,7 +107,6 @@ export default function ClassRoom({props,isTeacher,checkRoomExistance}) {
   useEffect(() => {
     if(connection) {
       connection.onopen = () => {     
-        // console.log("sending initial connection")
         if (isTeacher) {
           connection.send(JSON.stringify({
             subject:"initial", 
@@ -120,20 +121,17 @@ export default function ClassRoom({props,isTeacher,checkRoomExistance}) {
           const message = JSON.parse(event.data);
         if (message.subject == "initial" && !state.requestGame ) {
             setRequestGame( true)
-            // console.log("only Client setting request to true")
         } else if(message.subject == "welcome") {
-          console.log("sending request for on going game")
           connection.send(JSON.stringify({subject:"receive"}))
         } else if(message.subject === "state"){
-            // console.log("initializing existing game")
             setRunningGame(message.state);
         } else if (message.subject === "student_names") {
-          console.log("Student_name", message.students)
           updateStudentNames(message.students)
         }  else if(message.subject === "end-session"){
           setRoom(false)
         }
       })
+      return () => connection.close()
     }
   },[connection])
 
@@ -141,7 +139,6 @@ export default function ClassRoom({props,isTeacher,checkRoomExistance}) {
 
     if (connection) {  
       if(connection.readyState === WebSocket.OPEN) {
-          // console.log("Sending state once state.cards has changed");
           connection.send(JSON.stringify({subject:"player_move",state}));
       }
     }
@@ -155,12 +152,21 @@ export default function ClassRoom({props,isTeacher,checkRoomExistance}) {
     }
   },[name])
 
+  useEffect (() => {
+    for (const game of state.games) {
+      if (game.id === state.game) {
+        setCurrentGameInfo({title:game.title, level:game.level})
+      }
+    }
+  }, [state.game])
+
   useEffect(() => {
     if (connection) {  
       if(state.requestGame && isTeacher){
         newGame();
       }
     }
+
   }, [state.game])
 
   function setUserName(uname) {
@@ -173,7 +179,6 @@ export default function ClassRoom({props,isTeacher,checkRoomExistance}) {
         result.push(student.info)
       }
     }
-    console.log("new students=", result)
     setStudentNames([{name:"Class",id:1},...result])
   }
   function whosTurn() {
@@ -183,8 +188,6 @@ export default function ClassRoom({props,isTeacher,checkRoomExistance}) {
       }
     }
   }
-  console.log("games state",state.games)
-  
   return (
     <div>
       {(!name && room && !isTeacher) && ( <Form  onSave={setUserName}/>)}      
