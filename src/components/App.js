@@ -10,12 +10,14 @@ import HomePage from "./HomePage/HomePage";
 import MyGames from "./MyGames/MyGames"
 import CreateRoomButton from "./createRoom/CreateRoomButton"
 import {getURL, checkRoomExistance} from "../helpers/newRoomHelper"
+import CreateNewGame from "./createNewGame/CreateNewGame"
 
 import { Switch,Route } from "react-router-dom";
 
 export default function App() {
   const loggedIn = JSON.parse(sessionStorage.getItem('username')) === undefined ? null : JSON.parse(sessionStorage.getItem('username')) ; 
   const [ user, setUser ] = useState( loggedIn || null);
+  console.log("goddam user", user);
   
   return (
     <React.Fragment>
@@ -45,6 +47,10 @@ export default function App() {
         </Route>
         <Route exact path="/teacher/:id">
           <CreateRoomButton getURL={getURL}/>
+            {/* <ClassRoom wss={wss}/> */}
+        </Route>
+        <Route exact path="/newgame">
+          <CreateNewGame user={user}/>
             {/* <ClassRoom wss={wss}/> */}
         </Route>
         <Route exact path="/classroom/:id">

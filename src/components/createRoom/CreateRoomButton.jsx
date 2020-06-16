@@ -51,7 +51,7 @@ export default function CreateRoomButton({getURL}){
         className={classes.submit}
         onClick={() => generateRandomLink()}
       >
-        CREATE ROOM
+        START NEW CLASSROOM
       </Button>
     );
 }

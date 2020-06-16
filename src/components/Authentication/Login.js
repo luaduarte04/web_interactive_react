@@ -53,8 +53,8 @@ export default function Login(props) {
   const handleLogging = async (event) => {
     event.preventDefault();
     const response = await doRequest();
-    sessionStorage.setItem('username', JSON.stringify(response));
-    props.setUser (response);
+    response === undefined || sessionStorage.setItem('username', JSON.stringify(response));
+    props.setUser(response || null);
   }
   
   const linkStyle = {
