@@ -56,8 +56,6 @@ export default function ClassRoom({props,user,checkRoomExistance}) {
   const [connection, setConnection] = useState();
   const [name, setName] = useState();
   const [studentNames, setStudentNames] = useState([{name:"",id:1}])
-  // const [studentNames, setStudentNames] = useState([{name:"Class",id:1}])
-  const [currentGameInfo, setCurrentGameInfo] = useState()
 
   let isTeacher = false;
   if (user) isTeacher = true;

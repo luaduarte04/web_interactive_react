@@ -16,12 +16,7 @@ import { Switch,Route } from "react-router-dom";
 export default function App() {
   const loggedIn = JSON.parse(sessionStorage.getItem('username'));
   const [ user, setUser ] = useState( loggedIn || null);
-<<<<<<< HEAD
   
-  const history = useHistory();
-=======
->>>>>>> feature/game_authentication_part2
-
   return (
     <React.Fragment>
       <Navbar user={user}/>
