@@ -30,16 +30,18 @@ export default function MyGames(props) {
   const classes = useStyles();
   const [showFilter, setShowFilter] = useState(false);
   const [games, setGames] = useState("");
-  const { doRequest, errors } = authTeacher({
+  const { doRequest } = authTeacher({
     url: 'http://localhost:3001/teacher/games',
     method: 'get',
     body: {}
   })
 
-  useEffect(async () => {
-    const response = await doRequest();
-    setGames(response.teacherGames);
-  }, []);
+  useEffect( () => {
+    doRequest()
+    .then(response => {
+      setGames(response.teacherGames);
+    })
+  }, []);;
   
   const handleChange = (prev) => {
     setShowFilter((prev) => !prev);

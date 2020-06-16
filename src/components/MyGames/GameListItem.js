@@ -1,6 +1,5 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './GameList.scss';
-
 import {
   TableCell,
   TableRow,
@@ -8,12 +7,10 @@ import {
   Checkbox,
   Fade,
 } from '@material-ui/core';
-
 import {
   Link,
   withRouter
 } from "react-router-dom";
-
 import CopyLink from './CopyLink';
 import DeleteGame from './DeleteGame';
 

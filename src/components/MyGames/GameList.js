@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import './GameList.scss';
 import {
   makeStyles,
@@ -26,8 +26,6 @@ const useStyles = makeStyles({
 
 export default function GameList(props) {
   const classes = useStyles();
-  console.log('props in at GameList');
-  console.log(props);
   return (
     <TableContainer component={Paper}>
       <Table className={classes.table} aria-label="simple table">
@@ -41,11 +39,11 @@ export default function GameList(props) {
             Select{<br/>}Game
             </TableCell>
             <TableCell className={classes.tableCategories} align="left">Game Name</TableCell>
-            <TableCell className={classes.tableCategories} align="left">Subject</TableCell>
-            <TableCell className={classes.tableCategories} align="left">Type</TableCell>
+            <TableCell className={classes.tableCategories} align="left">Description</TableCell>
             <TableCell className={classes.tableCategories} align="left">Grade</TableCell>
             <TableCell className={classes.tableCategories} align="left">Level</TableCell>
-            <TableCell className={classes.tableCategories} align="left">Date</TableCell>
+            <TableCell className={classes.tableCategories} align="left">Type</TableCell>
+            <TableCell className={classes.tableCategories} align="left">Subject</TableCell>
             <TableCell className={classes.tableCategories} align="center">Actions</TableCell>
           </TableRow>
         </TableHead>
