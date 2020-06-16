@@ -41,9 +41,9 @@ export default function GameList(props) {
             <TableCell className={classes.tableCategories} align="left">Game Name</TableCell>
             <TableCell className={classes.tableCategories} align="left">Description</TableCell>
             <TableCell className={classes.tableCategories} align="left">Grade</TableCell>
-            <TableCell className={classes.tableCategories} align="left">Level</TableCell>
-            <TableCell className={classes.tableCategories} align="left">Type</TableCell>
             <TableCell className={classes.tableCategories} align="left">Subject</TableCell>
+            <TableCell className={classes.tableCategories} align="left">Type</TableCell>
+            <TableCell className={classes.tableCategories} align="left">Level</TableCell>
             <TableCell className={classes.tableCategories} align="center">Actions</TableCell>
           </TableRow>
         </TableHead>

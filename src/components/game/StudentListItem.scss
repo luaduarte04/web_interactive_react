@@ -1,6 +1,6 @@
 .student-item-container {
  border: #3f51b5 solid 2px;
- width: 18%;
+ width: 86px;
  height: auto;
  padding: 2px;
  display: flex;
@@ -23,4 +23,8 @@
 
 .student-item-container p {
   color: #3f51b5;
+  font-weight: bold;
+  text-transform: uppercase;
+  width: 96%;
+  word-wrap: break-word;
 }

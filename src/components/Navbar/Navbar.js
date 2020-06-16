@@ -13,6 +13,8 @@ import {
   withRouter
 } from "react-router-dom";
 
+import './Navbar.scss';
+
 // import Authentication from "./Authentication/Authentication";
 
 const useStyles = makeStyles((theme) => ({
@@ -80,16 +82,23 @@ function Navbar(props) {
             )}
             {props.user && (
               <div>
-                <Typography
-                  aria-label="account of current user"
-                  aria-controls="menu-appbar"
-                  aria-haspopup="true"
+                <div
+                  className="welcome-back"
                   onClick={handleMenu}
-                  color="inherit"
-                  style={{cursor: 'pointer'}}
                 >
-                  Welcome back, { props.user.first_name }!
-                </Typography>
+                  <Typography
+                    aria-label="account of current user"
+                    aria-controls="menu-appbar"
+                    aria-haspopup="true"
+                    color="inherit"
+                  >
+                    Welcome back, { props.user.first_name }!
+                  </Typography>
+                  {/* <div className="little-avatar">
+                    <img src={ props.user.avatar} />
+                  </div> */}
+                  <div className="arrow-dropdown"></div>
+                </div>
                 <Menu
                   id="menu-appbar"
                   anchorEl={anchorEl}
@@ -119,14 +128,14 @@ function Navbar(props) {
                   </MenuItem>
                   <MenuItem>
                     <Link
-                      to="/CreateGame"
+                      to="/newgame"
                       style={{textDecoration: "none", color: "rgba(0, 0, 0, 0.87)"}}
                       onClick={handleClose}
                     >
                       Create Game
                     </Link>
                   </MenuItem>
-                  <MenuItem>
+                  {/* <MenuItem>
                     <Link
                       to="/teacher/:id"
                       style={{textDecoration: "none", color: "rgba(0, 0, 0, 0.87)"}}
@@ -134,7 +143,7 @@ function Navbar(props) {
                     >
                       Create Room
                     </Link>
-                  </MenuItem>
+                  </MenuItem> */}
                   <MenuItem>
                     <Link 
                       to="/Logout" 

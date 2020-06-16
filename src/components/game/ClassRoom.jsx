@@ -200,8 +200,32 @@ export default function ClassRoom({props,user,checkRoomExistance}) {
               <div className="classroom-container">
                 <section className="sidebar">
                   {/* <hr className="sidebar__separator sidebar--centered" /> */}
-                  <div style={{width:"100%", height: 'auto'}}>
+                  <div className="avatar-container">
                     <div className="avatar"></div>
+                    <div
+                      className="avatar-buttons"
+                    >
+                      <Button
+                        type="submit"
+                        variant="contained"
+                        color="primary"
+                        className={classes.submit}
+                        style={{marginBottom: "5%"}}
+                        fullWidth
+                        size="small"
+                      >
+                        SHARE LINK
+                      </Button>
+                      <Button
+                        type="submit"
+                        variant="contained"
+                        className={classes.submit}
+                        fullWidth
+                        size="small"
+                      >
+                        LEAVE ROOM
+                      </Button>
+                    </div>
                   </div>
                   {isTeacher &&
                     <GameList
@@ -265,17 +289,6 @@ export default function ClassRoom({props,user,checkRoomExistance}) {
                       />
                     </div>
                   </div>
-                  <form className={classes.form}>
-                    <Button
-                      type="submit"
-                      variant="contained"
-                      color="primary"
-                      className={classes.submit}
-                      fullWidth
-                    >
-                      LEAVE ROOM
-                    </Button>
-                  </form>
                 </section>
               </div>
             </div>

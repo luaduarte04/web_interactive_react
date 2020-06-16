@@ -89,6 +89,7 @@ export default function Filter(props) {
           </Typography>
           <div className="filter-category">
             <FormControlLabel
+              style={{height:"20px", marginTop: "4%"}}
               control={
                 <Checkbox
                   checked={state.subjectAlphabet}
@@ -109,6 +110,7 @@ export default function Filter(props) {
               }
             />
             <FormControlLabel
+              style={{height:"20px", marginTop: "4%"}}
               control={
                 <Checkbox
                   checked={state.subjectNumbers}
@@ -129,6 +131,7 @@ export default function Filter(props) {
               }
             />
             <FormControlLabel
+              style={{height:"20px", marginTop: "4%"}}
               control={
                 <Checkbox
                   checked={state.subjectColors}
@@ -160,6 +163,7 @@ export default function Filter(props) {
           </Typography>
           <div className="filter-category">
             <FormControlLabel
+              style={{height:"20px", marginTop: "4%"}}
               control={
                 <Checkbox
                   checked={state.typeMemory}
@@ -180,6 +184,7 @@ export default function Filter(props) {
               }
             />
             <FormControlLabel
+              style={{height:"20px", marginTop: "4%"}}
               control={
                 <Checkbox
                   checked={state.typeSorting}
@@ -200,6 +205,7 @@ export default function Filter(props) {
               }
             />
             <FormControlLabel
+              style={{height:"20px", marginTop: "4%"}}
               control={
                 <Checkbox
                   checked={state.typePuzzle}
@@ -231,6 +237,7 @@ export default function Filter(props) {
           </Typography>
           <div className="filter-category">
             <FormControlLabel
+              style={{height:"20px", marginTop: "4%"}}
               control={
                 <Checkbox
                   checked={state.gradeOne}
@@ -246,11 +253,12 @@ export default function Filter(props) {
                   color="primary"
                   component="p"
                   variant="p">
-                    1
+                    Pre-school
                 </Typography>
               }
             />
             <FormControlLabel
+              style={{height:"20px", marginTop: "4%"}}
               control={
                 <Checkbox
                   checked={state.gradeTwo}
@@ -266,11 +274,12 @@ export default function Filter(props) {
                   color="primary"
                   component="p"
                   variant="p">
-                    2
+                    Pre-Kindergarten
                 </Typography>
               }
             />
             <FormControlLabel
+              style={{height:"20px", marginTop: "4%"}}
               control={
                 <Checkbox
                   checked={state.gradeThree}
@@ -286,7 +295,7 @@ export default function Filter(props) {
                   color="primary"
                   component="p"
                   variant="p">
-                    3
+                    Kindergarten
                 </Typography>
               }
             />
@@ -302,6 +311,7 @@ export default function Filter(props) {
           </Typography>
           <div className="filter-category">
             <FormControlLabel
+              style={{height:"20px", marginTop: "4%"}}
               control={
                 <Checkbox
                   checked={state.levelEasy}
@@ -322,6 +332,7 @@ export default function Filter(props) {
               }
             />
             <FormControlLabel
+              style={{height:"20px", marginTop: "4%"}}
               control={
                 <Checkbox
                   checked={state.levelMedium}
@@ -342,6 +353,7 @@ export default function Filter(props) {
               }
             />
             <FormControlLabel
+              style={{height:"20px", marginTop: "4%"}}
               control={
                 <Checkbox
                   checked={state.levelHard}
@@ -372,6 +384,7 @@ export default function Filter(props) {
             Creation Date
           </Typography>
           <FormControlLabel
+            style={{height:"20px", marginTop: "4%"}}
             control={
               <Checkbox
                 checked={state.date}

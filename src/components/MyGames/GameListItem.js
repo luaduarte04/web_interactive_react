@@ -15,7 +15,7 @@ import CopyLink from './CopyLink';
 import DeleteGame from './DeleteGame';
 
 
-function GameListItem({game}) {
+function GameListItem({props, game}) {
   const [clickedShare, setClickedShare] = React.useState(false);
   const [clickedDelete, setClickedDelete] = React.useState(false);
 
@@ -44,16 +44,16 @@ function GameListItem({game}) {
         <TableCell align="left">{game.title}</TableCell>
         <TableCell align="left">{game.description}</TableCell>
         <TableCell align="left">{game.grade}</TableCell>
-        <TableCell align="left">{game.level}</TableCell>
         <TableCell align="left">{game.subject}</TableCell>
         <TableCell align="left">{game.type}</TableCell>
+        <TableCell align="left">{game.level}</TableCell>
         <TableCell align="center">
           <form onSubmit={ e => {e.preventDefault();}}>
             <button
               className="actions actions-share"
               onClick={handleChangeShare}
             />
-            <Link to="/EditGame">
+            <Link to="/newgame">
               <button className="actions actions-edit" />
             </Link>
             <button
@@ -67,7 +67,7 @@ function GameListItem({game}) {
         <TableRow>
           <TableCell colSpan={8}>
               <Fade in={clickedShare}>
-                  <CopyLink gameLink={ game.gameLink } handleChangeShare={handleChangeShare} />
+                  <CopyLink handleChangeShare={handleChangeShare} />
               </Fade>
           </TableCell>
         </TableRow>

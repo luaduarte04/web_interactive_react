@@ -24,7 +24,7 @@ export default function App() {
       <Navbar user={user}/>
       <Switch>
         <Route exact path="/">
-         <HomePage />
+         <HomePage user={user} />
         </Route>
         <Route exact path="/MyGames">
          <MyGames user={user}/>

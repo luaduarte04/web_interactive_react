@@ -12,7 +12,6 @@ export default function Card(props) {
 
   return (
     <div
-    
       className={`flip-container ${flipped ? 'flipped' : ''} size`}
       onClick={() => disabled ? null : onClick(id)}
     >
@@ -23,6 +22,6 @@ export default function Card(props) {
           src={flipped || solved ? `${type}` : `/img/card-bg.png`}
           />
       </div>
-    </div>  
+    </div>
   )
 }
