@@ -14,7 +14,7 @@ import {getURL, checkRoomExistance} from "../helpers/newRoomHelper"
 import { Switch,Route } from "react-router-dom";
 
 export default function App() {
-  const loggedIn = JSON.parse(sessionStorage.getItem('username'));
+  const loggedIn = JSON.parse(sessionStorage.getItem('username')) === undefined ? null : JSON.parse(sessionStorage.getItem('username')) ; 
   const [ user, setUser ] = useState( loggedIn || null);
   
   return (
