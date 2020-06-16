@@ -17,8 +17,8 @@ export default function TheProduct(props) {
               Easy to use
             </Typography>
             <Typography className="text-container-p" variant="p">
-              {'From the latest trendy boutique hotel to the iconic palace with XXL pool'}
-              {', go for a mini-vacation just a few subway stops away from your home.'}
+              {'Simple and Friendly interface accessable for all ages and computer knowlegde'}
+              {'. Quickly share a classroom with personalized games for your students.'}
             </Typography>
           </Grid>
 
@@ -31,8 +31,8 @@ export default function TheProduct(props) {
               New Experiences
             </Typography>
             <Typography className="text-container-p" variant="p">
-              {'From the latest trendy boutique hotel to the iconic palace with XXL pool'}
-              {', go for a mini-vacation just a few subway stops away from your home.'}
+              {'Bring new experiences and playtime for your students.'}
+              {'Explore new activities everyday and make classroom more dynamic.'}
             </Typography>
           </Grid>
 
@@ -45,8 +45,8 @@ export default function TheProduct(props) {
               Feel closer
             </Typography>
             <Typography className="text-container-p" variant="p">
-              {'From the latest trendy boutique hotel to the iconic palace with XXL pool'}
-              {', go for a mini-vacation just a few subway stops away from your home.'}
+              {'Connect to your students in a new level, have fun togther,'}
+              {'with a playfull interface and interactive and educational games'}
             </Typography>
           </Grid>
         </Grid>

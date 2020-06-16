@@ -1,11 +1,25 @@
 import React from "react";
+
+import {
+  Button,
+  makeStyles,
+} from '@material-ui/core';
+
 import {
   useParams,
   useHistory
 } from "react-router-dom";
 import {Redirect} from "react-router"
 
+const useStyles = makeStyles((theme) => ({
+  submit: {
+    margin: theme.spacing(3, 0, 2),
+  },
+}));
+
 export default function CreateRoomButton({getURL}){
+  const classes = useStyles();
+
   const history = useHistory();
     let id = useParams();
     console.log(id)
@@ -23,12 +37,22 @@ export default function CreateRoomButton({getURL}){
       })
     }
     return (
-      <button
-        className={""}
+      // <button
+      //   className={""}
+      //   onClick={() => generateRandomLink()}
+      // >
+      //   {"Create Room"}
+      // </button>
+      <Button
+        type="submit"
+        fullWidth
+        variant="contained"
+        color="primary"
+        className={classes.submit}
         onClick={() => generateRandomLink()}
       >
-        {"Create Room"}
-      </button>
+        CREATE ROOM
+      </Button>
     );
 }
 // export default withRouter(CreateRoomButton)

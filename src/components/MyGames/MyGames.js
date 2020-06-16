@@ -11,6 +11,9 @@ import GameList from './GameList';
 import filter from './filter.svg';
 import Filter from './Filter';
 
+import CreateRoomButton from '../createRoom/CreateRoomButton';
+import {getURL, checkRoomExistance} from '../../helpers/newRoomHelper';
+
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -114,17 +117,9 @@ export default function MyGames(props) {
         </form>
       </div>
       <GameList />
-      <form className={classes.form}>
-        <Button
-          type="submit"
-          fullWidth
-          variant="contained"
-          color="primary"
-          className={classes.submit}
-        >
-          CREATE ROOM
-        </Button>
-      </form>
+      <div className={classes.form}>
+        <CreateRoomButton getURL={getURL} />
+      </div>
     </main>
   )
 }

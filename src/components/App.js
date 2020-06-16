@@ -22,7 +22,7 @@ import {
 // const WebSocket = require("ws");
 // const wss = new WebSocket.Server('ws://www.localhost.com/8080');
 export default function App() {
-  const [ user, setUser ] = useState("");
+  const [ user, setUser ] = useState();
   const history = useHistory();
 
   async function handleLogout (event) {
@@ -84,7 +84,7 @@ export default function App() {
         </Route>
         <Route exact path="/teacher/room/:id">
           {/* <h1>HELLO</h1> */}
-          <ClassRoom  isTeacher={true}  checkRoomExistance={checkRoomExistance} />
+          <ClassRoom user={user} isTeacher={true} checkRoomExistance={checkRoomExistance} />
         </Route>
         <Route exact path="/teacher/:id">
           <CreateRoomButton getURL={getURL}/>
@@ -101,7 +101,14 @@ export default function App() {
 // {new WebSocket('ws://localhost:12345')}
 // const wss = new WebSocket('ws://localhost:12345');
 
-// AUTHENTICATION AND MENU:
-  // 1 - when logged in show users first name
-  // 4 - prevent dropdown to pop when logged in for first time
-  // 5 - use first name for dropdown
+// HOME:
+  // 1 - maybe do a footer or fix copywrite
+
+// MYGAMES Page:
+  // 1 - implement delete
+
+// CLASSROOM:
+  // 1 - highlight when a student is selected for the turn
+  // 2 - maybe designate a color for each student so when they turn right the color will border the img
+  // 3 - "yay you complete!" message when a game is over
+  // 

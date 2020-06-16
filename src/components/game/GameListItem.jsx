@@ -1,8 +1,12 @@
-import React from "react";
+import React, {useState} from "react";
 // import "components/DayListItem.scss"
 import classNames from "classnames";
 
-export default function DayListItem(props) {
+import './GameListItem.scss'
+import { Button } from "@material-ui/core";
+
+export default function GameListItem(props) {
+  const [showList, setShowList] = useState(false);
   // title={item.title}
   //     description={item.description}
   //     type={item.type}
@@ -29,12 +33,38 @@ export default function DayListItem(props) {
     //   }
     // }
     // spots = formatSports();
+
+    const handleChange = (prev) => {
+      setShowList((prev) => !prev);
+    };
+  
+    const handleClose = () => {
+      setShowList(false);
+    };
+
   return (
-    <li className={"nothing"} onClick={setGame} data-testid="day">
-      <h2 className="text--regular ">{title}</h2> 
-      <h3 className="text--light">{description}</h3>
-      <p>{type}</p>
-      <p>{level}</p>
+    <li className="game-list-item" data-testid="day">
+      <h2 onClick={ e => {e.preventDefault(); handleChange(e) }}>{title}
+        { showList && 
+          <div>
+          <h3>DESCRIPTION:</h3>
+          <p>{description}</p>
+          <h3>TYPE:</h3>
+          <p>{type}</p>
+          <h3>LEVEL:</h3>
+          <p>{level}</p>
+          <Button
+            onClick={setGame}
+            variant="contained"
+            color="primary"
+            size="small"
+            style={{margin: "15px 0px 10px 0px"}}
+          >
+            SELECT GAME
+          </Button>
+          </div> 
+        }
+      </h2>
     </li>
   );
 }
