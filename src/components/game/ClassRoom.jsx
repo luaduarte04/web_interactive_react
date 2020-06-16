@@ -11,6 +11,7 @@ import {useParams} from "react-router-dom";
 
 export default function ClassRoom({isTeacher,checkRoomExistance}) {
   const [userId, setUserId] = useState(Math.floor(100000 + Math.random() * 900000))
+  const [error, setError] = useState()
   const [room, setRoom] = useState();
   const [connection, setConnection] = useState();
   const [name, setName] = useState();
@@ -30,7 +31,7 @@ export default function ClassRoom({isTeacher,checkRoomExistance}) {
   const roomKey = useParams();
   useEffect(()=> {
     
-    checkRoomExistance(roomKey.id)
+    checkRoomExistance(roomKey.id, isTeacher)
     .then((res) => {
       if (res.data){
         setRoom(res.data)
@@ -39,7 +40,12 @@ export default function ClassRoom({isTeacher,checkRoomExistance}) {
           fetchGameList()
         }
       } else {
-        setRoom(false)
+        if (isTeacher) {
+          setRoom(false)
+          setError("Another Teacher is hosting this room. You can only view room as guest please logout first to join.")
+        } else {
+          setRoom(false)
+        }
       }
     })
     .catch(err => console.log(err))
@@ -164,7 +170,8 @@ export default function ClassRoom({isTeacher,checkRoomExistance}) {
             </section>
           </>
         )}
-        { !room && <h1> ROOM SESSION NO LONGER EXISTS</h1>}         
+        { (!room && !error) && <h1> ROOM SESSION NO LONGER EXISTS</h1>}
+        {error && <h1>{error}</h1>}         
     </section>
     
   );

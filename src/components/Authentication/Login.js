@@ -42,7 +42,7 @@ export default function Login(props) {
   const [password, setPassword] = useState('');
   let history = useHistory();
   const { doRequest, errors } = authTeacher({
-    url: 'http://localhost:3001/login/',
+    url: 'http://localhost:8080/login',
     method: 'post',
     body: {
       email, password
@@ -102,7 +102,7 @@ export default function Login(props) {
                 />
               </Grid>
             </Grid>
-            {errors}
+            {errors && <p>Incorrect email or password!</p>}
             <Button
               type="submit"
               fullWidth

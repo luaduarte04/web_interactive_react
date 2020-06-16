@@ -12,15 +12,15 @@ export default function CreateRoomButton({getURL}){
     function generateRandomLink() {
       getURL()
       .then(res => {
-        const link = res.url;
-        console.log("Link:", link)
-        history.push(`/teacher/room/${link}`)
-        // return (
-        //   // <Switch>
-        //     <Redirect to="/teacher/room/masjdbaj" />
-        //   // </Switch> 
-        // )
+        if(res) {
+          const link = res.url;
+          console.log("Link:", link)
+          history.push(`/classroom/${link}`)
+        } else {
+          history.push("/login")
+        }
       })
+      .catch(err => console.log(err))
     }
     return (
       <button
