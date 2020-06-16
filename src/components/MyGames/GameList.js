@@ -1,6 +1,5 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './GameList.scss';
-
 import {
   makeStyles,
   Table,
@@ -11,7 +10,6 @@ import {
   TableRow,
   Paper,
 } from '@material-ui/core';
-
 import GameListItem from './GameListItem';
 
 
@@ -25,17 +23,12 @@ const useStyles = makeStyles({
     fontSize: "1em",
   }
 });
-
+/*
 function createData(gameName, subject, type, grade, level, date, gameLink) {
   return { gameName, subject, type, grade, level, date, gameLink };
 }
 
 const savedGames = [
-  // createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-  // createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-  // createData('Eclair', 262, 16.0, 24, 6.0),
-  // createData('Cupcake', 305, 3.7, 67, 4.3),
-  // createData('Gingerbread', 356, 16.0, 49, 3.9),
   createData ( 
     'ABC',
     'Alphabet',
@@ -64,11 +57,12 @@ const savedGames = [
     'https://github.com/nkbt/react-copy-to-clipboard',
   ),
 ];
-
+*/
 
 export default function GameList(props) {
   const classes = useStyles();
-  
+  console.log('props in at GameList');
+  console.log(props);
   return (
     <TableContainer component={Paper}>
       <Table className={classes.table} aria-label="simple table">
@@ -91,7 +85,7 @@ export default function GameList(props) {
           </TableRow>
         </TableHead>
         <TableBody>
-          {savedGames.map((game) => (
+          {props.games.map((game) => (
             <GameListItem game={game} />
           ))}
         </TableBody>

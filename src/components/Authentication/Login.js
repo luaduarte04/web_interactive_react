@@ -46,14 +46,16 @@ export default function Login(props) {
     method: 'post',
     body: {
       email, password
-    }, 
+    },
     onSuccess: () => history.push("/MyGames")
   })
 
   const handleLogging = async (event) => {
     event.preventDefault();
     const response = await doRequest();
+    sessionStorage.setItem('username', JSON.stringify(response));
     props.setUser (response);
+    console.log("username in storage is:",sessionStorage.getItem('username'))
   }
   
   const linkStyle = {

@@ -1,16 +1,10 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import './MyGames.scss';
-
-import {
-  Button,
-  makeStyles,
-  Typography
-} from '@material-ui/core';
-
+import { Button, makeStyles, Typography } from '@material-ui/core';
 import GameList from './GameList';
 import filter from './filter.svg';
 import Filter from './Filter';
-
+import authTeacher from "../../hooks/authTeacher";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -32,11 +26,21 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-
 export default function MyGames(props) {
   const classes = useStyles();
   const [showFilter, setShowFilter] = useState(false);
+  const [games, setGames] = useState("");
+  const { doRequest, errors } = authTeacher({
+    url: 'http://localhost:3001/teacher/games',
+    method: 'get',
+    body: {}
+  })
 
+  useEffect(async () => {
+    const response = await doRequest();
+    setGames(response.teacherGames);
+  }, []);
+  
   const handleChange = (prev) => {
     setShowFilter((prev) => !prev);
   };
@@ -71,7 +75,6 @@ export default function MyGames(props) {
     boxShadow: "0px 0px 5px 1px rgba(0,0,0,0.3)",
     borderRadius: '5px',
   }
-
   return (
     <main>
       <div className="header">
@@ -113,7 +116,7 @@ export default function MyGames(props) {
           }
         </form>
       </div>
-      <GameList />
+      {games && <GameList games ={games}/>}
       <form className={classes.form}>
         <Button
           type="submit"

@@ -30,6 +30,7 @@ function GameListItem(props) {
     setClickedDelete((prev) => !prev);
   };
 
+  console.log(props)
   const game = props.game
   
   return (
@@ -46,12 +47,12 @@ function GameListItem(props) {
             }
           />
         </TableCell>
-        <TableCell align="left">{game.gameName}</TableCell>
-        <TableCell align="left">{game.subject}</TableCell>
-        <TableCell align="left">{game.type}</TableCell>
+        <TableCell align="left">{game.title}</TableCell>
+        <TableCell align="left">{game.description}</TableCell>
         <TableCell align="left">{game.grade}</TableCell>
         <TableCell align="left">{game.level}</TableCell>
-        <TableCell align="left">{game.date}</TableCell>
+        <TableCell align="left">{game.subject}</TableCell>
+        <TableCell align="left">{game.type}</TableCell>
         <TableCell align="center">
           <form onSubmit={ e => {e.preventDefault();}}>
             <button

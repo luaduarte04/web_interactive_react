@@ -12,54 +12,11 @@ import MyGames from "./MyGames/MyGames"
 import CreateRoomButton from "./createRoom/CreateRoomButton"
 import {getURL, checkRoomExistance} from "../helpers/newRoomHelper"
 
-import {
-  Switch,
-  Route,
-  useHistory,
-} from "react-router-dom";
+import { Switch,Route } from "react-router-dom";
 
-
-// const WebSocket = require("ws");
-// const wss = new WebSocket.Server('ws://www.localhost.com/8080');
 export default function App() {
-  const [ user, setUser ] = useState("");
-  const history = useHistory();
-
-  async function handleLogout (event) {
-    event.preventDefault();
-    // await Auth.signOut();
-    setUser(false);
-    history.push("/home");
-  }
-
-  async function handleLogging (event) {
-    event.preventDefault();
-    // console.log("event", event.target.email.value)
-    // console.log("event2", event.target.password.value)
-    // if (user) {
-    //   setUser(event.target.email.value)
-    //   history.push("/MyGames");
-    // } else {
-
-    // }
-    try {
-      // await Auth.signIn(user.email, user.password);
-      // userHasAuthenticated(true);
-      setUser(event.target.email.value)
-      history.push("/MyGames");
-    } catch (e) {
-      alert(e.message);
-    }
-  }
-
-
-  // function to retrieve first name from database
-  // useEffect(() => {
-  //   effect
-  //   return () => {
-  //     cleanup
-  //   }
-  // })
+  const loggedIn = JSON.parse(sessionStorage.getItem('username'));
+  const [ user, setUser ] = useState( loggedIn || null);
   return (
     <React.Fragment>
       <Navbar user={user}/>
@@ -68,7 +25,7 @@ export default function App() {
          <HomePage />
         </Route>
         <Route exact path="/MyGames">
-         <MyGames />
+         <MyGames user={user}/>
         </Route>
         <Route exact path="/Register">
           <Register setUser={setUser}/>
