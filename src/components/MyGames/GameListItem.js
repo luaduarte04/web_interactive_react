@@ -18,7 +18,7 @@ import CopyLink from './CopyLink';
 import DeleteGame from './DeleteGame';
 
 
-function GameListItem(props) {
+function GameListItem({game}) {
   const [clickedShare, setClickedShare] = React.useState(false);
   const [clickedDelete, setClickedDelete] = React.useState(false);
 
@@ -29,8 +29,6 @@ function GameListItem(props) {
   const handleChangeDelete = () => {
     setClickedDelete((prev) => !prev);
   };
-
-  const game = props.game
   
   return (
     <React.Fragment>

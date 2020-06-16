@@ -17,6 +17,8 @@ import { Switch,Route } from "react-router-dom";
 export default function App() {
   const loggedIn = JSON.parse(sessionStorage.getItem('username'));
   const [ user, setUser ] = useState( loggedIn || null);
+  const history = useHistory();
+
   return (
     <React.Fragment>
       <Navbar user={user}/>
@@ -39,16 +41,12 @@ export default function App() {
         <Route exact path="/Logout">
           <Logout setUser={setUser} />
         </Route>
-        <Route exact path="/teacher/room/:id">
-          {/* <h1>HELLO</h1> */}
-          <ClassRoom  isTeacher={true}  checkRoomExistance={checkRoomExistance} />
-        </Route>
         <Route exact path="/teacher/:id">
           <CreateRoomButton getURL={getURL}/>
             {/* <ClassRoom wss={wss}/> */}
         </Route>
-        <Route exact path="/classroom/:id">.
-          <ClassRoom  isTeacher={false}  checkRoomExistance={checkRoomExistance} />
+        <Route exact path="/classroom/:id">
+          <ClassRoom  isTeacher={setUser}  checkRoomExistance={checkRoomExistance} />
         </Route>
       </Switch>
       <Copyright />
