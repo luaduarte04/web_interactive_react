@@ -36,9 +36,11 @@ export default function MyGames(props) {
     body: {}
   })
 
-  useEffect(async () => {
-    const response = await doRequest();
-    setGames(response.teacherGames);
+  useEffect( () => {
+    doRequest()
+    .then(response => {
+      setGames(response.teacherGames);
+    })
   }, []);
   
   const handleChange = (prev) => {

@@ -17,7 +17,6 @@ import { Switch,Route } from "react-router-dom";
 export default function App() {
   const loggedIn = JSON.parse(sessionStorage.getItem('username'));
   const [ user, setUser ] = useState( loggedIn || null);
-  const history = useHistory();
 
   return (
     <React.Fragment>
@@ -46,7 +45,7 @@ export default function App() {
             {/* <ClassRoom wss={wss}/> */}
         </Route>
         <Route exact path="/classroom/:id">
-          <ClassRoom  isTeacher={setUser}  checkRoomExistance={checkRoomExistance} />
+          <ClassRoom  user={user}  checkRoomExistance={checkRoomExistance} />
         </Route>
       </Switch>
       <Copyright />

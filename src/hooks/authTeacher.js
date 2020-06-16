@@ -16,12 +16,13 @@ export default ({ url, method, body, onSuccess }) => {
       }
       return response.data
     } catch (err) {
-      setErrors(
-        <div className="alert alert-danger">
-          <h4>Ooops...</h4>
-            <ul>{err.response.statusText}</ul>
-        </div>
-      );
+      // setErrors(
+      //   <div className="alert alert-danger">
+      //     <h4>Ooops...</h4>
+      //       {/* <ul>{err.response.statusText}</ul> */}
+      //   </div>
+      // );
+      console.log(err);
     }
   };
   return { doRequest, errors };

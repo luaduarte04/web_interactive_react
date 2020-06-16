@@ -35,7 +35,6 @@ export default function Board(props){
   //     }
   //   }
   // })
- console.log("is it disabled for me?", disabled)
 
   return (
     <>

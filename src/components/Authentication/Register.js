@@ -50,7 +50,7 @@ export default function Register(props) {
   const [password, setPassword] = useState('');
   let history = useHistory();
   const { doRequest, errors } = authTeacher({
-    url: 'http://localhost:8080/register',
+    url: 'http://localhost:3001/register',
     method: 'post',
     body: {
       first_name, last_name, email, avatar, password
