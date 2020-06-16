@@ -13,6 +13,7 @@ export default function Logout(props) {
 
   useEffect(() => {
     doRequest();
+    sessionStorage.clear();
     props.setUser(false);
   }, []);
 

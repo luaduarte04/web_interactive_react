@@ -14,11 +14,9 @@ import {getURL, checkRoomExistance} from "../helpers/newRoomHelper"
 
 import { Switch,Route } from "react-router-dom";
 
-// const WebSocket = require("ws");
-// const wss = new WebSocket.Server('ws://www.localhost.com/8080');
 export default function App() {
-  const [ user, setUser ] = useState("");
-  
+  const loggedIn = JSON.parse(sessionStorage.getItem('username'));
+  const [ user, setUser ] = useState( loggedIn || null);
   return (
     <React.Fragment>
       <Navbar user={user}/>
