@@ -7,6 +7,7 @@ import Form from "./Form"
 import StudentList from "./StudentList"
 import socket from "./socket"
 import {useParams} from "react-router-dom";
+import {CopyToClipboard} from 'react-copy-to-clipboard';
 
 import {
   makeStyles,
@@ -71,6 +72,13 @@ export default function ClassRoom({gameHistory, user,checkRoomExistance}) {
   } = useGameData();
 
   const roomKey = useParams();
+
+  const {copy, setCopy} = useState({
+    value:`http://localhost:8000/classroom/${roomKey.id}`,
+    copied:false
+  });
+
+
   useEffect(()=> {
     
     checkRoomExistance(roomKey.id, isTeacher)
@@ -189,6 +197,14 @@ export default function ClassRoom({gameHistory, user,checkRoomExistance}) {
       }
     }
   }
+  function closeRoom() {
+    connection.close()
+    if(isTeacher){
+      gameHistory.push("/mygames")
+    } else {
+      gameHistory.push("/")
+    }
+  }
   return (
     <div>
       {(!name && room && !isTeacher) && ( <Form  onSave={setUserName}/>)}      
@@ -205,24 +221,31 @@ export default function ClassRoom({gameHistory, user,checkRoomExistance}) {
                     <div className="avatar"></div>
                     <div
                       className="avatar-buttons"
-                    >
+                    >      
+                      { isTeacher && 
+                        <CopyToClipboard
+                          text={`http://localhost:8000/classroom/${roomKey.id}`}
+                          onClick={() => {setCopy({copied: true})}}>
+                          < Button
+                            type="submit"
+                            variant="contained"
+                            color="primary"
+                            className={classes.submit}
+                            style={{marginBottom: "5%"}}
+                            fullWidth
+                            size="small"
+                          >
+                            COPY LINK
+                          </Button>
+                        </CopyToClipboard>
+                      }
                       <Button
                         type="submit"
                         variant="contained"
-                        color="primary"
-                        className={classes.submit}
-                        style={{marginBottom: "5%"}}
-                        fullWidth
-                        size="small"
-                      >
-                        SHARE LINK
-                      </Button>
-                      <Button
-                        type="submit"
-                        variant="contained"
                         className={classes.submit}
                         fullWidth
                         size="small"
+                        onClick={() => closeRoom()}
                       >
                         LEAVE ROOM
                       </Button>
