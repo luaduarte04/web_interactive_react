@@ -52,7 +52,7 @@ export default function Login(props) {
     body: {
       email, password
     },
-    onSuccess: () => history.push("/MyGames")
+    // onSuccess: () => history.push("/MyGames")
   })
 
   const handleLogging = async (event) => {
@@ -63,11 +63,12 @@ export default function Login(props) {
       isError = true;
       setError(true);
       setErrorMessage({...setErrorMessage, email: "please enter a valid email"});
-    } else if(password.length < 5){
-      isError = true;
-      setError(true);
-      setErrorMessage({...setErrorMessage, password: "password need at least five characters"});
-    }
+    } 
+    // else if(password.length < 5){
+    //   isError = true;
+    //   setError(true);
+    //   setErrorMessage({...setErrorMessage, password: "password needs to be a minimum of five characters"});
+    // }
     if (!isError) {
       isError = false;
       setError(false);
@@ -75,6 +76,7 @@ export default function Login(props) {
       const response = await doRequest();
       response === undefined || sessionStorage.setItem('username', JSON.stringify(response));
       props.setUser(response || null);
+      history.push("/MyGames")
     }
   }
   

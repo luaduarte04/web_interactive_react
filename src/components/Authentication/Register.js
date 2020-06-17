@@ -83,7 +83,7 @@ export default function Register(props) {
     } else if(password.length < 5){
       isError = true;
       setError(true);
-      setErrorMessage({...setErrorMessage, password: "password need at least five characters"});
+      setErrorMessage({...setErrorMessage, password: "password needs to be a minimum of five characters"});
     }
     
     if (!isError) {

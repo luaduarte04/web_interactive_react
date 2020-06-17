@@ -205,7 +205,7 @@ export default function CreateNewGame({user}) {
                 label="Types"
               >
                 {state.types.map((item) =>
-                  <MenuItem key={item.id} value = {item.id}>
+                  <MenuItem key={item.id} value = {item.id} required>
                     {item.name}
                   </MenuItem>
                 )}
