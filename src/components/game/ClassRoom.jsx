@@ -178,6 +178,11 @@ export default function ClassRoom({gameHistory, user,checkRoomExistance}) {
 
   }, [state.game])
 
+  function resetTurns() {
+    setTurn(0);
+
+  }
+
   function setUserName(uname) {
     setName(uname);
   }
@@ -249,6 +254,16 @@ export default function ClassRoom({gameHistory, user,checkRoomExistance}) {
                       >
                         LEAVE ROOM
                       </Button>
+                      <Button
+                        type="submit"
+                        variant="contained"
+                        className={classes.submit}
+                        fullWidth
+                        size="small"
+                        onClick={() => resetTurns()}
+                      >
+                        Reset Control
+                      </Button>
                     </div>
                   </div>
                   {isTeacher &&
@@ -266,7 +281,7 @@ export default function ClassRoom({gameHistory, user,checkRoomExistance}) {
                       component="h6"
                       variant="h6"
                     >
-                      Players
+                      Players {isTeacher && <p>click on student to give them control</p>}
                     </Typography>
                     <div>
                       { whosTurn() &&
