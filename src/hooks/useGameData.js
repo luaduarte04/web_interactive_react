@@ -70,6 +70,6 @@ export default function useGameData() {
   }
   const setGame = game => setState({...state, game});
   const setRequestGame = val => setState({...state, requestGame:val});
-  const setTurn = id => {console.log("chosenTurn", id);setState({...state, turn:id})}
+  const setTurn = id => {setState({...state, turn:id})}
   return {state, fetchGameList, setTurn, setRunningGame ,setGame, newGame, setRequestGame, flipCard}
 }
