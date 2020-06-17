@@ -23,7 +23,6 @@ export default ({ url, method, body, onSuccess }) => {
             <ul>{err.response}</ul>
         </div>
       );
-      console.log(err);
     }
   };
   return { doRequest, errors };

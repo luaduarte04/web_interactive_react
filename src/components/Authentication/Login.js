@@ -40,10 +40,10 @@ export default function Login(props) {
   const classes = useStyles();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [error, setError] = useState(false);
+  const [errorMessage, setErrorMessage] = useState({});
   let history = useHistory();
-  console.log("props",props.user)
   if (props.user){
-    console.log("hellp")
     history.push('/myGames')
   }
   const { doRequest, errors } = authTeacher({
@@ -57,9 +57,25 @@ export default function Login(props) {
 
   const handleLogging = async (event) => {
     event.preventDefault();
-    const response = await doRequest();
-    response === undefined || sessionStorage.setItem('username', JSON.stringify(response));
-    props.setUser(response || null);
+    let isError = false;
+    const pattern = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/;
+    if (!pattern.test(email)) {
+      isError = true;
+      setError(true);
+      setErrorMessage({...setErrorMessage, email: "please enter a valid email"});
+    } else if(password.length < 5){
+      isError = true;
+      setError(true);
+      setErrorMessage({...setErrorMessage, password: "password need at least five characters"});
+    }
+    if (!isError) {
+      isError = false;
+      setError(false);
+      setErrorMessage({});
+      const response = await doRequest();
+      response === undefined || sessionStorage.setItem('username', JSON.stringify(response));
+      props.setUser(response || null);
+    }
   }
   
   const linkStyle = {
@@ -81,6 +97,7 @@ export default function Login(props) {
             <Grid container spacing={2}>
               <Grid item xs={12}>
                 <TextField
+                  error={!!errorMessage.email}
                   variant="outlined"
                   required
                   fullWidth
@@ -91,10 +108,12 @@ export default function Login(props) {
                   type="email"
                   value={email}
                   onChange = {event => setEmail(event.target.value)}
+                  helperText = {errorMessage.email}
                 />
               </Grid>
               <Grid item xs={12}>
                 <TextField
+                  error={!!errorMessage.password}
                   variant="outlined"
                   required
                   fullWidth
@@ -105,6 +124,7 @@ export default function Login(props) {
                   autoComplete="current-password"
                   value={password}
                   onChange = {event => setPassword(event.target.value)}
+                  helperText = {errorMessage.password}
                 />
               </Grid>
             </Grid>
