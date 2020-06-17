@@ -323,7 +323,17 @@ export default function ClassRoom({gameHistory, user,checkRoomExistance}) {
           ROOM SESSION NO LONGER EXISTS
         </Typography>
       }
-      {error && <h1>{error}</h1>}
+      { error && 
+        <Typography
+          className={classes.notRoomSessionTitle}
+          style={{ fontWeight: 'bold'}}
+          color="primary"
+          component="h2"
+          variant="h2"
+        >
+          {error}
+        </Typography>
+      }
     </div>
   );
 }
