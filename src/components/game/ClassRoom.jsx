@@ -268,15 +268,9 @@ export default function ClassRoom({props,user,checkRoomExistance}) {
                         component="h6"
                         variant="h6"
                       >
-                        {currentGameInfo && `${currentGameInfo.title}`}
-                      </Typography>
-                      <Typography
-                        className=""
-                        color="primary"
-                        component="h6"
-                        variant="h6"
-                      >
-                       {currentGameInfo && `Level - ${currentGameInfo.level}`}
+                        {currentGameInfo &&
+                          `${currentGameInfo.title} | ${currentGameInfo.level}`
+                        }
                       </Typography>
                     </div>
                     <div className="game-area">

@@ -17,7 +17,7 @@ export default function Card(props) {
     >
       <div style={tryHere} className='flipper size'>
         <img
-          style={{width:"90px", height:"90px",}} 
+          // style={{width:"90px", height:"90px",}} 
           className={`size ${flipped ? 'front' : 'back'}`}
           src={flipped || solved ? `${type}` : `/img/card-bg.png`}
           />
