@@ -38,6 +38,7 @@ export default function MyGames({user}) {
   const classes = useStyles();
   const [showFilter, setShowFilter] = useState(false);
   const [games, setGames] = useState("");
+  const [deleting, setDeleting] = useState(true);
   const history = useHistory();
   
   const { doRequest } = authTeacher({
@@ -53,8 +54,10 @@ export default function MyGames({user}) {
       .then(response => {
         setGames(response.teacherGames);
       })
+      .catch(err => console.log(err))
     }
-  }, []);
+    return (() => setGames(""));
+  },[deleting]);
   
   const handleChange = (prev) => {
     setShowFilter((prev) => !prev);
@@ -149,7 +152,7 @@ export default function MyGames({user}) {
           }
         </form>
       </div>
-      {games && <GameList games ={games}/>}
+      {games && <GameList setDeleting={setDeleting}games ={games}/>}
       <div className={classes.form}>
         <CreateRoomButton getURL={getURL} />
       </div>

@@ -22,7 +22,6 @@ export default function CreateRoomButton({getURL}){
 
   const history = useHistory();
     let id = useParams();
-    console.log(id)
     function generateRandomLink() {
       getURL()
       .then(res => {

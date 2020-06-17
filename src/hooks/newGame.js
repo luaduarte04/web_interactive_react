@@ -37,7 +37,6 @@ export default function useNewGameData() {
   },[]);
   
   function saveNewGame(data) {
-    console.log("i got ", data)
     return axios.post("/games/creategame", data)
     .then(res => console.log(res))
     .catch(err => console.timeLog(err))

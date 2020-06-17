@@ -49,7 +49,7 @@ export default function GameList(props) {
         </TableHead>
         <TableBody>
           {props.games.map((game) => (
-            <GameListItem game={game} />
+            <GameListItem key={game.id}setDeleting={props.setDeleting} game={game} />
           ))}
         </TableBody>
       </Table>
