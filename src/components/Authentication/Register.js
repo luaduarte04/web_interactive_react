@@ -60,7 +60,7 @@ export default function Register(props) {
     body: {
       first_name, last_name, email, avatar, password
     }, 
-    // onSuccess: () => history.push("/MyGames")
+    onSuccess: () => history.push("/MyGames")
   })
 
   const handleRegistration = async (event) => {
@@ -93,7 +93,7 @@ export default function Register(props) {
       const response = await doRequest();
       response === undefined || sessionStorage.setItem('username', JSON.stringify(response));
       props.setUser(response);
-      history.push("/MyGames")
+      // history.push("/MyGames")
     }
   }
 
