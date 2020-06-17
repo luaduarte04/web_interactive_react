@@ -68,36 +68,46 @@ export default function App() {
   // LUANA:
     // 1 - maybe do a footer or fix copywrite
     // 2 - maybe make images have some effect
-    // 3 - responsive
+
 
 // REGISTER
   // NEIHY:
     // 1 - when user exists if try to register break page.
 
+
 // MYGAMES Page:
-  // 1 - Dropdown pops randomly
-  // 2 - FILTER = not implemented
-  // 3 - SELECT GAME CHECKBOX = not implemented
-  // 4 - COPY / SHARE BUTTON = not working
-        // (function is logging error. link need to be send to input value)
-  // 5 - EDIT = take you to newgame page but does not keep the props.
-        // ex: title, level, ...
-  // 6 - DELETE = not implemented
-  // 7 - START NEW CLASSROOM BUTTON = it is working indepently of game list (hard coded game)
-  // 8 - responsive
+  // LUANA:
+    // 1 - Dropdown pops randomly
+  
+  // FREE FOR ALL
+    // 2 - FILTER = not implemented
+    // 3 - SELECT GAME CHECKBOX = not implemented
+    // 4 - COPY / SHARE BUTTON = not working
+          // (function is logging error. link need to be send to input value)
+    // 5 - EDIT = take you to newgame page but does not keep the props.
+          // ex: title, level, ...
+    // 6 - DELETE = not implemented
+    // 7 - START NEW CLASSROOM BUTTON = it is working indepently of game list (hard coded game)
+
 
 // CLASSROOM
-  // 1 - COPY SHARE LINK BUTTON - not implemented
-  // 2 - LEAVE ROOM BUTTON - not working
+  // FREE FOR ALL
+    // 1 - COPY SHARE LINK BUTTON - not implemented
+    // 2 - LEAVE ROOM BUTTON - not working
 
   // EXTRA CSS
-    // 1 - highlight when a student is selected for the turn
-    // 2 - color for each student so when they turn right the color will border the img
-    // 3 - "yay you complete!" message when a game is over
-    // 4 - responsive
+    // LUANA
+      // 1 - highlight when a student is selected for the turn
+      // 2 - color for each student so when they turn right the color will border the img
+      // 3 - "yay you complete!" message when a game is over
+      // 4 - responsive
+
 
 // STUDENT VIEW PAGE
-  // 1 - How do i access it now?
+  // LUANA
+    // 1 - How do i access it now?
+
 
 // ENDED SESSION PAGE
-  // 1 - How do i access it now?
+  // LUANA
+    // 1 - How do i access it now?
