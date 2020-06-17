@@ -38,11 +38,11 @@ export default function Board(props){
 
   return (
     <>
-      <div className="board">
+      <div >
       {cards.map( card => {
 
         return (
-          <Card className="board__box"
+          <Card 
             key={card.id}
             type={card.type}
             id={card.id}
