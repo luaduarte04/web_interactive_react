@@ -15,7 +15,7 @@ import CopyLink from './CopyLink';
 import DeleteGame from './DeleteGame';
 
 
-function GameListItem({game}) {
+function GameListItem({game, setDeleting}) {
   const [clickedShare, setClickedShare] = React.useState(false);
   const [clickedDelete, setClickedDelete] = React.useState(false);
 
@@ -76,7 +76,7 @@ function GameListItem({game}) {
         <TableRow>
           <TableCell colSpan={8}>
               <Fade in={clickedDelete}>
-                  <DeleteGame handleChangeDelete={handleChangeDelete} />
+                  <DeleteGame setDeleting={setDeleting} gameId={game.id} handleChangeDelete={handleChangeDelete} />
               </Fade>
           </TableCell>
         </TableRow>

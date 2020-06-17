@@ -1,8 +1,16 @@
 import React from 'react';
 import './DeleteGame.scss';
+import {deleteGame} from "../../helpers/gameHelpers"
 
-
-export default function CopyLink(props) {
+export default function DeleteGame(props) {
+  function DeleteGame() {
+    deleteGame(props.gameId)
+    .then(res => {
+      props.handleChangeDelete()
+      props.setDeleting(prev => !prev);
+    })
+    .catch(err => console.log(err))
+  }
 
   return (
     <div className="delete-game-container">
@@ -12,7 +20,7 @@ export default function CopyLink(props) {
         </p>
       </div>
       <div className="buttons">
-        <button className="confirm-button">
+        <button className="confirm-button" onClick={() => DeleteGame()}>
           CONFIRM 
         </button>
         <button className="cancel-button" onClick={props.handleChangeDelete}>
