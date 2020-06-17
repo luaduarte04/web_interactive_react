@@ -15,7 +15,7 @@ import CopyLink from './CopyLink';
 import DeleteGame from './DeleteGame';
 
 
-function GameListItem({game, setDeleting}) {
+function GameListItem({game, setDeleting, chooseGames}) {
   const [clickedShare, setClickedShare] = React.useState(false);
   const [clickedDelete, setClickedDelete] = React.useState(false);
 
@@ -35,8 +35,10 @@ function GameListItem({game, setDeleting}) {
           <FormControlLabel
             control={
               <Checkbox
+                id = {game.id}
                 name="select-game"
                 color="primary"
+                onChange={(e) => chooseGames(e.currentTarget.checked, e.currentTarget.id)}
               />
             }
           />

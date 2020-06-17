@@ -1,14 +1,11 @@
-import React from "react";
+import React, {useState} from "react";
 
 import {
   Button,
   makeStyles,
 } from '@material-ui/core';
 
-import {
-  useParams,
-  useHistory
-} from "react-router-dom";
+import {useParams} from "react-router-dom";
 import {Redirect} from "react-router"
 
 const useStyles = makeStyles((theme) => ({
@@ -17,41 +14,44 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function CreateRoomButton({getURL}){
+export default function CreateRoomButton({gameHistory, selected, getURL}){
   const classes = useStyles();
-
-  const history = useHistory();
+  const [error, setError] = useState()
+  // const history = useHistory();
     let id = useParams();
-    function generateRandomLink() {
-      getURL()
-      .then(res => {
-        if(res) {
-          const link = res.url;
-          console.log("Link:", link)
-          history.push(`/classroom/${link}`)
-        } else {
-          history.push("/login")
-        }
-      })
-      .catch(err => console.log(err))
+    function startGame() {
+
+      if (selected.length > 0){  
+        setError("")
+        getURL()
+        .then(res => {
+          if(res) {
+            const link = res.url;
+            console.log("Link:", link)
+            gameHistory.push({pathname:`/classroom/${link}`,selected})
+          } else {
+            gameHistory.push("/login")
+          }
+        })
+        .catch(err => console.log(err))
+      } else {
+        setError("Must selected atleast one game to start session")
+      }
     }
     return (
-      // <button
-      //   className={""}
-      //   onClick={() => generateRandomLink()}
-      // >
-      //   {"Create Room"}
-      // </button>
-      <Button
-        type="submit"
-        fullWidth
-        variant="contained"
-        color="primary"
-        className={classes.submit}
-        onClick={() => generateRandomLink()}
-      >
-        START NEW CLASSROOM
-      </Button>
+      <>
+        <Button
+          type="submit"
+          fullWidth
+          variant="contained"
+          color="primary"
+          className={classes.submit}
+          onClick={() => startGame()}
+        >
+          START NEW CLASSROOM
+        </Button>
+        {error && <p>{error}</p>}
+      </>
     );
 }
 // export default withRouter(CreateRoomButton)

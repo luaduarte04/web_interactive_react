@@ -67,7 +67,7 @@ export default function CreateNewGame({user}) {
     if (number === 3) inputCount = 8;
     let newInput =[]
     for (let i = 0; i < inputCount; i++) {
-      newInput.push(`image url ${i+1}`)
+      newInput.push(`image ${i+1} url`)
     }
     setInput(newInput);
   }
@@ -156,6 +156,7 @@ export default function CreateNewGame({user}) {
                 id="demo-simple-select-outlined"
                 // value={age}
                 // onChange={handleChange}
+                name="grade"
                 label="Grade"
               >
                 {state.grades.map((item) =>
@@ -179,6 +180,7 @@ export default function CreateNewGame({user}) {
                 id="demo-simple-select-outlined"
                 // value={age}
                 // onChange={handleChange}
+                name="subject"
                 label="Subjects"
               >
                 {state.subjects.map((item) =>
@@ -200,6 +202,7 @@ export default function CreateNewGame({user}) {
               <Select
                 labelId="demo-simple-select-outlined-label"
                 id="demo-simple-select-outlined"
+                name="type"
                 // value={age}
                 // onChange={handleChange}
                 label="Types"
@@ -225,6 +228,7 @@ export default function CreateNewGame({user}) {
                 id="demo-simple-select-outlined"
                 // value={age}
                 // onChange={handleChange}
+                name="level"
                 onChange={(e)=> appendInput(parseInt(e.target.value))}
                 label="level"
               >
@@ -276,7 +280,7 @@ export default function CreateNewGame({user}) {
                       key={input}
                       type="text"
                       id={input}
-                      name="input"
+                      name={input}
                       required
                       label="Paste your image link here"
                       variant="outlined"

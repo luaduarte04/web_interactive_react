@@ -47,7 +47,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function ClassRoom({props,user,checkRoomExistance}) {
+export default function ClassRoom({gameHistory, user,checkRoomExistance}) {
   const classes = useStyles();
   const [userId, setUserId] = useState(Math.floor(100000 + Math.random() * 900000))
   const [error, setError] = useState()
@@ -56,7 +56,7 @@ export default function ClassRoom({props,user,checkRoomExistance}) {
   const [connection, setConnection] = useState();
   const [name, setName] = useState();
   const [studentNames, setStudentNames] = useState([{name:"",id:1}])
-
+  const selected = gameHistory.location.selected;
   let isTeacher = false;
   if (user) isTeacher = true;
   const {
@@ -75,12 +75,13 @@ export default function ClassRoom({props,user,checkRoomExistance}) {
     
     checkRoomExistance(roomKey.id, isTeacher)
     .then((res) => {
+      console.log("repsonse from session",res.data)
       if (res.data){
         console.log("after fethcing game",res)
         setRoom(res.data)
         setConnection(socket());
         if(isTeacher) {
-          fetchGameList()
+          fetchGameList(selected)
         }
       } else {
         if (isTeacher) {

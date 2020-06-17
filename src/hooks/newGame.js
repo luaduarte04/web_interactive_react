@@ -41,7 +41,6 @@ export default function useNewGameData() {
     .then(res => console.log(res))
     .catch(err => console.timeLog(err))
   };
-  console.log("state", state)
  
   return {state, saveNewGame}
 }

@@ -12,13 +12,13 @@ import CreateRoomButton from "./createRoom/CreateRoomButton"
 import {getURL, checkRoomExistance} from "../helpers/newRoomHelper"
 import CreateNewGame from "./createNewGame/CreateNewGame"
 
-import { Switch,Route } from "react-router-dom";
+import { Switch,Route ,useHistory}  from "react-router-dom";
 
 export default function App() {
   const loggedIn = JSON.parse(sessionStorage.getItem('username')) === undefined ? null : JSON.parse(sessionStorage.getItem('username')) ; 
   const [ user, setUser ] = useState( loggedIn || null);
 
-  
+  const gameHistory = useHistory();
   return (
     <React.Fragment>
       <Navbar user={user}/>
@@ -27,7 +27,7 @@ export default function App() {
          <HomePage user={user} />
         </Route>
         <Route exact path="/MyGames">
-         <MyGames user={user}/>
+         <MyGames gameHistory={gameHistory} user={user}/>
         </Route>
         <Route exact path="/Register">
           <Register user={user}setUser={setUser}/>
@@ -54,7 +54,7 @@ export default function App() {
             {/* <ClassRoom wss={wss}/> */}
         </Route>
         <Route exact path="/classroom/:id">
-          <ClassRoom  user={user}  checkRoomExistance={checkRoomExistance} />
+          <ClassRoom  gameHistory={gameHistory} user={user}  checkRoomExistance={checkRoomExistance} />
         </Route>
       </Switch>
       <Copyright />

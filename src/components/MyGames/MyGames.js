@@ -34,11 +34,12 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function MyGames({user}) {
+export default function MyGames({gameHistory, user}) {
   const classes = useStyles();
   const [showFilter, setShowFilter] = useState(false);
   const [games, setGames] = useState("");
   const [deleting, setDeleting] = useState(true);
+  const [chosenGames, setChosenGames] = useState([]);
   const history = useHistory();
   
   const { doRequest } = authTeacher({
@@ -66,6 +67,14 @@ export default function MyGames({user}) {
   const handleClose = () => {
     setShowFilter(false);
   };
+
+  function chooseGames(val, id) {
+    if (val) {
+      setChosenGames(prev => [...prev, parseInt(id)])
+    } else {
+      setChosenGames(prev => prev.filter(c => c !== parseInt(id)))
+    }
+  }
 
   const buttonStyle = {
     width: "100%",
@@ -152,9 +161,9 @@ export default function MyGames({user}) {
           }
         </form>
       </div>
-      {games && <GameList setDeleting={setDeleting}games ={games}/>}
+      {games && <GameList chooseGames={chooseGames}setDeleting={setDeleting}games ={games}/>}
       <div className={classes.form}>
-        <CreateRoomButton getURL={getURL} />
+        <CreateRoomButton gameHistory={gameHistory} selected={chosenGames} getURL={getURL} />
       </div>
     </main>
   )
