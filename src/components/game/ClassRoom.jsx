@@ -254,16 +254,6 @@ export default function ClassRoom({gameHistory, user,checkRoomExistance}) {
                       >
                         LEAVE ROOM
                       </Button>
-                      <Button
-                        type="submit"
-                        variant="contained"
-                        className={classes.submit}
-                        fullWidth
-                        size="small"
-                        onClick={() => resetTurns()}
-                      >
-                        Reset Control
-                      </Button>
                     </div>
                   </div>
                   {isTeacher &&
@@ -281,8 +271,19 @@ export default function ClassRoom({gameHistory, user,checkRoomExistance}) {
                       component="h6"
                       variant="h6"
                     >
-                      Players {isTeacher && <p>click on student to give them control</p>}
+                      Players {isTeacher && `- click on student to give them control`}
                     </Typography>
+                    <Button
+                        type="submit"
+                        variant="contained"
+                        className={classes.submit}
+                        fullWidth
+                        size="small"
+                        onClick={() => resetTurns()}
+                        style={{marginTop: "2%"}}
+                      >
+                        Reset Control
+                      </Button>
                     <div>
                       { whosTurn() &&
                         <h5 className="whos-turn">
